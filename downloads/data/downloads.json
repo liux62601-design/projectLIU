@@ -1,0 +1,98 @@
+[
+  {
+    "id": "sdk-v2.1.0",
+    "title": "TechTutorial SDK",
+    "description": "完整的软件开发工具包，包含编译器、调试器、库文件和示例项目。支持 Windows、macOS 和 Linux。",
+    "category": "software",
+    "version": "v2.1.0",
+    "size": "256 MB",
+    "date": "2026-06-22",
+    "downloads": 15234,
+    "file": "#",
+    "icon": "software"
+  },
+  {
+    "id": "firmware-v1.8.3",
+    "title": "开发板固件",
+    "description": "最新的开发板固件镜像，包含性能优化和新功能支持。适用于所有 TechTutorial 开发板型号。",
+    "category": "firmware",
+    "version": "v1.8.3",
+    "size": "48 MB",
+    "date": "2026-06-20",
+    "downloads": 8921,
+    "file": "#",
+    "icon": "firmware"
+  },
+  {
+    "id": "datasheet-v3",
+    "title": "硬件数据手册",
+    "description": "开发板的完整硬件规格说明、引脚定义、电气特性和机械尺寸。",
+    "category": "pdf",
+    "version": "v3.0",
+    "size": "12 MB",
+    "date": "2026-06-18",
+    "downloads": 21567,
+    "file": "#",
+    "icon": "pdf"
+  },
+  {
+    "id": "source-v1.0",
+    "title": "示例代码合集",
+    "description": "包含 50+ 个完整的示例项目源代码，覆盖 GPIO、SPI、I²C、UART、Wi-Fi、BLE 等常用外设。",
+    "category": "source",
+    "version": "v1.0.0",
+    "size": "32 MB",
+    "date": "2026-06-15",
+    "downloads": 6789,
+    "file": "#",
+    "icon": "source"
+  },
+  {
+    "id": "ide-plugin-v1.5",
+    "title": "VS Code 插件",
+    "description": "Visual Studio Code 集成开发插件，支持代码补全、语法高亮、一键编译和烧录。",
+    "category": "software",
+    "version": "v1.5.2",
+    "size": "8 MB",
+    "date": "2026-06-12",
+    "downloads": 12450,
+    "file": "#",
+    "icon": "software"
+  },
+  {
+    "id": "bootloader-v2.0",
+    "title": "Bootloader",
+    "description": "第二代安全引导加载程序，支持 OTA 固件升级、签名验证和回滚保护。",
+    "category": "firmware",
+    "version": "v2.0.1",
+    "size": "4 MB",
+    "date": "2026-06-08",
+    "downloads": 5432,
+    "file": "#",
+    "icon": "firmware"
+  },
+  {
+    "id": "api-reference-v2",
+    "title": "API 参考手册",
+    "description": "完整的 API 接口文档，包含所有函数、结构体、常量和回调的详细说明。",
+    "category": "pdf",
+    "version": "v2.1",
+    "size": "18 MB",
+    "date": "2026-06-05",
+    "downloads": 9876,
+    "file": "#",
+    "icon": "pdf"
+  },
+  {
+    "id": "cli-tools-v1.3",
+    "title": "命令行工具集",
+    "description": "跨平台命令行开发工具，支持项目创建、编译、烧录和调试的一键操作。",
+    "category": "software",
+    "version": "v1.3.0",
+    "size": "22 MB",
+    "date": "2026-06-01",
+    "downloads": 7654,
+    "file": "#",
+    "icon": "software"
+  }
+]

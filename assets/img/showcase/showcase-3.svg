@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="sc3bg" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#2c2c2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="12" fill="url(#sc3bg)"/>
+  <!-- Editor chrome -->
+  <rect x="0" y="0" width="800" height="36" rx="12" fill="#2c2c2e"/>
+  <rect x="0" y="18" width="800" height="18" fill="#2c2c2e"/>
+  <circle cx="16" cy="18" r="5" fill="#ff453a"/>
+  <circle cx="32" cy="18" r="5" fill="#ff9f0a"/>
+  <circle cx="48" cy="18" r="5" fill="#30d158"/>
+  <!-- Tabs -->
+  <rect x="90" y="3" width="100" height="32" rx="6" fill="#1c1c1e"/>
+  <text x="112" y="23" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.6">index.tsx</text>
+  <rect x="194" y="6" width="100" height="30" rx="6" fill="#2c2c2e" opacity="0.5"/>
+  <text x="215" y="24" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.3">utils.ts</text>
+  <rect x="298" y="6" width="100" height="30" rx="6" fill="#2c2c2e" opacity="0.5"/>
+  <text x="318" y="24" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.3">styles.css</text>
+  <!-- Sidebar - file tree -->
+  <rect x="0" y="36" width="180" height="464" fill="#1c1c1e" fill-opacity="0.6"/>
+  <text x="16" y="60" font-family="system-ui,sans-serif" font-size="9" font-weight="bold" fill="#ffffff" opacity="0.4">EXPLORER</text>
+  <text x="12" y="82" font-family="system-ui,sans-serif" font-size="9" fill="#0a84ff" opacity="0.5">v src/</text>
+  <text x="28" y="100" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.35">components/</text>
+  <text x="44" y="116" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.25">Header.tsx</text>
+  <text x="44" y="132" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.35">Dashboard.tsx</text>
+  <text x="44" y="148" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.25">Footer.tsx</text>
+  <text x="28" y="166" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.35">hooks/</text>
+  <text x="28" y="184" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.35">utils/</text>
+  <text x="28" y="202" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.25">App.tsx</text>
+  <text x="28" y="220" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.25">main.tsx</text>
+  <!-- Line numbers -->
+  <rect x="180" y="36" width="30" height="464" fill="#1c1c1e" fill-opacity="0.3"/>
+  <text x="196" y="60" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">1</text>
+  <text x="196" y="76" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">2</text>
+  <text x="196" y="92" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">3</text>
+  <text x="196" y="108" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">4</text>
+  <text x="196" y="124" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">5</text>
+  <text x="196" y="140" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">6</text>
+  <text x="196" y="156" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">7</text>
+  <text x="196" y="172" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">8</text>
+  <text x="196" y="188" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">9</text>
+  <text x="196" y="204" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">10</text>
+  <text x="196" y="220" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">11</text>
+  <text x="196" y="236" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">12</text>
+  <text x="196" y="252" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">13</text>
+  <text x="196" y="268" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.15">14</text>
+  <!-- Code content -->
+  <text x="222" y="60" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">import</text>
+  <text x="270" y="60" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3"> { useState, useEffect } </text>
+  <text x="410" y="60" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">from</text>
+  <text x="442" y="60" font-family="monospace" font-size="10" fill="#0a84ff" opacity="0.4">"react"</text>
+  <rect x="222" y="70" width="2" height="2" fill="#ffffff" opacity="0.1"/>
+  <text x="222" y="92" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">const</text>
+  <text x="262" y="92" font-family="monospace" font-size="10" fill="#30d158" opacity="0.5">Dashboard</text>
+  <text x="340" y="92" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3"> = () => {</text>
+  <text x="234" y="108" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">const</text>
+  <text x="274" y="108" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3"> [data, setData] = </text>
+  <text x="396" y="108" font-family="monospace" font-size="10" fill="#0a84ff" opacity="0.4">useState</text>
+  <text x="468" y="108" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3">([])</text>
+  <rect x="234" y="116" width="250" height="3" rx="1.5" fill="#0a84ff" opacity="0.08"/>
+  <text x="234" y="140" font-family="monospace" font-size="10" fill="#0a84ff" opacity="0.4">useEffect</text>
+  <text x="306" y="140" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3">(() => {</text>
+  <text x="246" y="156" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">const</text>
+  <text x="286" y="156" font-family="monospace" font-size="10" fill="#30d158" opacity="0.4">fetchData</text>
+  <text x="358" y="156" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3"> = </text>
+  <text x="374" y="156" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">async</text>
+  <text x="414" y="156" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3"> () => {</text>
+  <text x="258" y="172" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">const</text>
+  <text x="298" y="172" font-family="monospace" font-size="10" fill="#30d158" opacity="0.4">res</text>
+  <text x="326" y="172" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3"> = </text>
+  <text x="342" y="172" font-family="monospace" font-size="10" fill="#bf5af2" opacity="0.5">await</text>
+  <text x="378" y="172" font-family="monospace" font-size="10" fill="#0a84ff" opacity="0.4">fetch</text>
+  <text x="414" y="172" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3">(</text>
+  <text x="422" y="172" font-family="monospace" font-size="10" fill="#0a84ff" opacity="0.3">'/api/data'</text>
+  <text x="510" y="172" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.3">)</text>
+  <!-- Cursor -->
+  <rect x="222" y="238" width="6" height="12" fill="#0a84ff" opacity="0.6"/>
+</svg>

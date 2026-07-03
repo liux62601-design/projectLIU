@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <defs>
+    <linearGradient id="hw2bg" x1="0" y1="0" x2="600" y2="400">
+      <stop offset="0%" stop-color="#2c2c2e"/>
+      <stop offset="100%" stop-color="#1c1c1e"/>
+    </linearGradient>
+    <linearGradient id="hw2sensor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bf5af2" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0a84ff" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="16" fill="url(#hw2bg)"/>
+  <rect width="600" height="400" rx="16" fill="none" stroke="#3a3a3c" stroke-width="1"/>
+  <!-- Main sensor module board -->
+  <rect x="140" y="60" width="320" height="280" rx="10" fill="#1c1c1e" stroke="#3a3a3c" stroke-width="1.5"/>
+  <rect x="140" y="60" width="320" height="280" rx="10" fill="url(#hw2sensor)"/>
+  <!-- Sensor chip center -->
+  <rect x="220" y="120" width="160" height="120" rx="8" fill="#1c1c1e" stroke="#3a3a3c" stroke-width="1"/>
+  <rect x="220" y="120" width="160" height="120" rx="8" fill="#bf5af2" fill-opacity="0.05"/>
+  <!-- Sensor dome -->
+  <rect x="250" y="140" width="100" height="60" rx="30" fill="none" stroke="#bf5af2" stroke-width="1" opacity="0.4"/>
+  <circle cx="300" cy="170" r="18" fill="none" stroke="#0a84ff" stroke-width="1" opacity="0.3"/>
+  <circle cx="300" cy="170" r="10" fill="#0a84ff" opacity="0.08"/>
+  <circle cx="300" cy="170" r="4" fill="#0a84ff" opacity="0.15"/>
+  <!-- Sensor label -->
+  <text x="300" y="225" font-family="monospace" font-size="8" fill="#bf5af2" opacity="0.4" text-anchor="middle">IMU SENSOR</text>
+  <text x="300" y="238" font-family="monospace" font-size="7" fill="#ffffff" opacity="0.12" text-anchor="middle">MPU-9250</text>
+  <!-- Pin headers -->
+  <g fill="#0a84ff" opacity="0.15">
+    <rect x="148" y="100" width="140" height="2"/>
+    <rect x="148" y="130" width="140" height="2"/>
+    <rect x="148" y="160" width="140" height="2"/>
+    <rect x="148" y="190" width="140" height="2"/>
+    <rect x="148" y="220" width="140" height="2"/>
+    <rect x="448" y="100" width="4" height="2"/>
+    <rect x="448" y="130" width="4" height="2"/>
+    <rect x="448" y="160" width="4" height="2"/>
+    <rect x="448" y="190" width="4" height="2"/>
+    <rect x="448" y="220" width="4" height="2"/>
+  </g>
+  <!-- GPIO pins bottom -->
+  <g fill="none" stroke="#3a3a3c" stroke-width="0.8">
+    <rect x="178" y="290" width="12" height="18" rx="2"/>
+    <rect x="198" y="290" width="12" height="18" rx="2"/>
+    <rect x="218" y="290" width="12" height="18" rx="2"/>
+    <rect x="238" y="290" width="12" height="18" rx="2"/>
+    <rect x="258" y="290" width="12" height="18" rx="2"/>
+    <rect x="278" y="290" width="12" height="18" rx="2"/>
+    <rect x="298" y="290" width="12" height="18" rx="2"/>
+    <rect x="318" y="290" width="12" height="18" rx="2"/>
+    <rect x="338" y="290" width="12" height="18" rx="2"/>
+    <rect x="358" y="290" width="12" height="18" rx="2"/>
+    <rect x="378" y="290" width="12" height="18" rx="2"/>
+    <rect x="398" y="290" width="12" height="18" rx="2"/>
+  </g>
+  <!-- Small components -->
+  <rect x="170" y="80" width="16" height="10" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="196" y="80" width="16" height="10" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="222" y="80" width="16" height="10" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="400" y="80" width="20" height="10" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <circle cx="440" cy="85" r="6" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="170" y="255" width="20" height="12" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="200" y="255" width="20" height="12" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="420" y="200" width="20" height="12" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="420" y="220" width="20" height="12" rx="1" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <!-- Traces -->
+  <g stroke="#bf5af2" stroke-width="0.5" opacity="0.12">
+    <polyline points="178,90 200,100 200,120 220,120"/>
+    <polyline points="204,90 220,100 220,140 220,140"/>
+    <polyline points="230,90 250,100 250,120 250,120"/>
+    <polyline points="410,85 400,100 380,100 380,120"/>
+    <polyline points="430,85 420,100 400,110 400,120"/>
+  </g>
+  <!-- Antenna trace -->
+  <path d="M420,170 Q440,160 440,140 Q440,120 430,110" fill="none" stroke="#0a84ff" stroke-width="0.8" opacity="0.2"/>
+  <text x="455" y="150" font-family="system-ui,sans-serif" font-size="6" fill="#0a84ff" opacity="0.2">ANT</text>
+  <!-- Status LED -->
+  <circle cx="300" cy="275" r="3" fill="#30d158" opacity="0.3"/>
+  <circle cx="380" cy="275" r="3" fill="#ff9f0a" opacity="0.2"/>
+  <text x="300" y="268" font-family="system-ui,sans-serif" font-size="5" fill="#ffffff" opacity="0.1" text-anchor="middle">PWR</text>
+  <text x="380" y="268" font-family="system-ui,sans-serif" font-size="5" fill="#ffffff" opacity="0.1" text-anchor="middle">STAT</text>
+</svg>

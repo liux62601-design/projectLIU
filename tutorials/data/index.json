@@ -1,0 +1,46 @@
+[
+  {
+    "id": "installation",
+    "title": "环境安装与配置 — 下载 App",
+    "description": "iOS / Android 手机端 MQTT 软件下载与安装指南。",
+    "category": "入门",
+    "tags": ["安装", "MQTT", "iOS", "Android"],
+    "date": "2026-06-22",
+    "author": "TechTutorial Team",
+    "readingTime": 3,
+    "difficulty": "beginner"
+  },
+  {
+    "id": "quick-start",
+    "title": "快速入门指南 — 怎么用这个设备",
+    "description": "从开机配网到日常使用，一篇搞定。",
+    "category": "入门",
+    "tags": ["快速入门", "配网", "使用说明"],
+    "date": "2026-06-22",
+    "author": "TechTutorial Team",
+    "readingTime": 5,
+    "difficulty": "beginner"
+  },
+  {
+    "id": "advanced-config",
+    "title": "高级配置指南",
+    "description": "深入了解系统配置选项，优化性能和功耗。",
+    "category": "进阶",
+    "tags": ["配置", "优化", "性能", "高级"],
+    "date": "2026-06-15",
+    "author": "TechTutorial Team",
+    "readingTime": 15,
+    "difficulty": "advanced"
+  },
+  {
+    "id": "troubleshooting",
+    "title": "常见问题排查",
+    "description": "使用过程中常见问题及解决方法。",
+    "category": "支持",
+    "tags": ["FAQ", "故障", "配网", "WiFi"],
+    "date": "2026-06-22",
+    "author": "TechTutorial Team",
+    "readingTime": 3,
+    "difficulty": "beginner"
+  }
+]

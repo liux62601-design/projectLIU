@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a84ff"/>
+      <stop offset="100%" stop-color="#bf5af2"/>
+    </linearGradient>
+    <linearGradient id="logoGrad2" x1="48" y1="0" x2="0" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#bf5af2" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <polygon points="24,3 43,14 43,34 24,45 5,34 5,14" fill="none" stroke="url(#logoGrad)" stroke-width="2" stroke-linejoin="round"/>
+  <polygon points="24,8 38,16 38,32 24,40 10,32 10,16" fill="url(#logoGrad2)" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linejoin="round"/>
+  <polygon points="24,14 32,19 32,29 24,34 16,29 16,19" fill="url(#logoGrad)" stroke="url(#logoGrad)" stroke-width="1" stroke-linejoin="round" opacity="0.8"/>
+  <circle cx="24" cy="24" r="2" fill="#ffffff"/>
+</svg>

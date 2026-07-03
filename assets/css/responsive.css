@@ -1,0 +1,339 @@
+/* ============================================================
+   TechTutorial Pro — Responsive Design
+   Breakpoints: 1200px, 992px, 768px, 576px, 400px
+   Mobile-first enhancements at larger breakpoints
+   ============================================================ */
+
+/* --- Extra Large (1400px+) -------------------------- */
+@media (min-width: 1400px) {
+  .container {
+    max-width: var(--max-width-wide);
+  }
+}
+
+/* --- Large Desktops (1200px - 1399px) ---------------- */
+@media (max-width: 1199px) {
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* --- Desktops & Tablets Landscape (992px - 1199px) --- */
+@media (max-width: 991px) {
+  :root {
+    --nav-height: 64px;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .grid-3,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .split-section {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .split-image {
+    order: -1;
+  }
+
+  .showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* --- Tablets Portrait (768px - 991px) ---------------- */
+@media (max-width: 767px) {
+  :root {
+    --nav-height: 60px;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2.25rem); }
+  h3 { font-size: 1.25rem; }
+
+  /* Nav */
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Grids */
+  .grid-2,
+  .grid-3,
+  .features-grid,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Hero */
+  .hero {
+    padding: calc(var(--nav-height) + 1.5rem) 1.25rem 3rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Cards */
+  .card, .card-glass {
+    padding: 1.5rem;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-qr {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item::before {
+    left: -1.95rem;
+  }
+
+  /* Lightbox */
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+
+  /* Toast */
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  /* Back to top */
+  .back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Download cards */
+  .download-card {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .download-meta {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* PWA install prompt */
+  .pwa-install-prompt {
+    left: 1rem;
+    right: 1rem;
+    transform: translateY(120px);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pwa-install-prompt.show {
+    transform: translateY(0);
+  }
+}
+
+/* --- Large Phones (576px - 767px) -------------------- */
+@media (max-width: 575px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header .subtitle {
+    font-size: 1rem;
+  }
+
+  .filter-bar {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+
+  .card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Forms */
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* --- Small Phones (400px - 575px) -------------------- */
+@media (max-width: 399px) {
+  :root {
+    --nav-height: 56px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .hero {
+    padding: calc(var(--nav-height) + 1rem) 1rem 2.5rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Height-based Queries ---------------------------- */
+@media (max-height: 600px) {
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 3rem);
+    padding-bottom: 3rem;
+  }
+}
+
+/* --- Print Styles ------------------------------------ */
+@media print {
+  .nav, .mobile-menu, .mobile-menu-btn,
+  .back-to-top, .theme-toggle, .lightbox,
+  .toast-container, .pwa-install-prompt,
+  .hero-scroll {
+    display: none !important;
+  }
+
+  .section { padding: 2rem 0; }
+  body { background: #fff; color: #000; }
+  a { color: #000; }
+}
+
+/* --- Dark Mode OS Preference (when no theme set) ----- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --bg-glass: rgba(28, 28, 30, 0.72);
+    --bg-glass-heavy: rgba(28, 28, 30, 0.88);
+    --text-primary: #f5f5f7;
+    --text-secondary: #98989d;
+    --text-tertiary: #636366;
+    --accent: #0a84ff;
+    --accent-hover: #409cff;
+    --accent-light: rgba(10, 132, 255, 0.15);
+    --border: rgba(255, 255, 255, 0.12);
+    --border-light: rgba(255, 255, 255, 0.06);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 40px rgba(10, 132, 255, 0.3);
+    --code-bg: #1c1c1e;
+    --code-text: #f5f5f7;
+    --code-keyword: #da4b9b;
+    --code-string: #4ec96b;
+    --code-comment: #636366;
+    --code-function: #5ea8ff;
+    --code-number: #e08f3a;
+  }
+}

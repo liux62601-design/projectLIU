@@ -1,0 +1,71 @@
+{
+  "id": "troubleshooting",
+  "title": "常见问题排查",
+  "description": "使用过程中常见问题及解决方法。",
+  "category": "支持",
+  "tags": ["调试", "错误", "故障排除", "FAQ"],
+  "date": "2026-06-22",
+  "author": "TechTutorial Team",
+  "readingTime": 3,
+  "difficulty": "beginner",
+  "content": [
+
+    {"type": "heading", "level": 2, "text": "灯不亮"},
+
+    {"type": "paragraph", "text": "灯完全不亮，通常有两种原因："},
+    {"type": "list", "ordered": false, "items": [
+      "**没电了** — 用 Type-C 线充电 30 分钟后再试",
+      "**开关没开** — 确认开关已拨到上方（开机位置）",
+      "**死机了** — 拨下开关再拨上去，重启设备"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "灯闪但手机搜不到 alter"},
+
+    {"type": "paragraph", "text": "灯慢闪说明设备在等人配网，但手机 WiFi 列表里找不到 alter 热点："},
+    {"type": "list", "ordered": true, "items": [
+      "**关了重开** — 开关拨下等 3 秒，再拨上去",
+      "**靠近一点** — 手机离设备近一些（1 米以内）",
+      "**关掉手机 WiFi 再打开** — 刷新 WiFi 列表",
+      "**换台手机试试** — 排除手机兼容问题"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "连上 alter 但不弹网页"},
+
+    {"type": "paragraph", "text": "手动打开浏览器，地址栏输入："},
+    {"type": "code", "language": "text", "code": "192.168.4.1"},
+    {"type": "paragraph", "text": "如果还是打不开，检查是否连的还是原来的 WiFi？确保手机当前连的是 **alter**，不是家里的 WiFi。"},
+
+    {"type": "heading", "level": 2, "text": "填完保存了但连不上"},
+
+    {"type": "callout", "calloutType": "warning", "text": "最常见的错误：热点名字或密码跟填的不一样。必须一模一样，包括大小写！"},
+    {"type": "list", "ordered": false, "items": [
+      "检查热点名字有没有多余空格",
+      "密码是不是至少 8 位",
+      "热点名字区分大小写：MyWifi ≠ mywifi"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "灯一直亮但没有数据"},
+
+    {"type": "paragraph", "text": "灯一直亮说明连上 WiFi 了，数据延迟通常是因为："},
+    {"type": "list", "ordered": false, "items": [
+      "**网络波动** — 等 1-2 分钟，设备会自动重连",
+      "**WiFi 信号差** — 把设备挪到离路由器近一点的地方",
+      "**MQTT 服务器问题** — 等几分钟再刷新 App"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "想重新配网（换 WiFi）"},
+
+    {"type": "heading", "level": 3, "text": "方法 1：网页清除"},
+    {"type": "paragraph", "text": "连上 alter 热点 → 打开 192.168.4.1 → 点页面底部的**清除**按钮 → 设备重启 → 灯慢闪 → 重新按配网流程走一遍。"},
+
+    {"type": "heading", "level": 3, "text": "方法 2：硬件清除"},
+    {"type": "paragraph", "text": "开机后 3 秒内，拿一根导线："},
+    {"type": "code", "language": "text", "code": "一头碰 GPIO8\n一头碰 GND\n灯快闪 6 下 = 清空成功"},
+    {"type": "paragraph", "text": "清空后设备自动重启，灯慢闪 = 可以重新配网了。"},
+
+    {"type": "divider", "text": ""},
+
+    {"type": "callout", "calloutType": "info", "text": "还是搞不定？检查侧边栏「快速入门指南」确认步骤没错，或者联系我们。"}
+
+  ]
+}

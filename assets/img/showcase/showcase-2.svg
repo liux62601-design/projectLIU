@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="sc2bg" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#2c2c2e"/>
+    </linearGradient>
+    <linearGradient id="sc2phone" x1="0" y1="0" x2="0" y2="500">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#bf5af2" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="12" fill="url(#sc2bg)"/>
+  <!-- Decorative devices floating in background -->
+  <rect x="60" y="30" width="200" height="440" rx="24" fill="#000000" stroke="#3a3a3c" stroke-width="2" opacity="0.3"/>
+  <rect x="540" y="50" width="200" height="400" rx="24" fill="#000000" stroke="#3a3a3c" stroke-width="2" opacity="0.2"/>
+  <!-- Center phone mockup -->
+  <rect x="280" y="25" width="240" height="450" rx="28" fill="#1c1c1e" stroke="#3a3a3c" stroke-width="2"/>
+  <rect x="280" y="25" width="240" height="450" rx="28" fill="url(#sc2phone)"/>
+  <!-- Notch -->
+  <rect x="360" y="30" width="80" height="20" rx="10" fill="#000000"/>
+  <!-- Status bar -->
+  <text x="300" y="48" font-family="system-ui,sans-serif" font-size="8" fill="#ffffff" opacity="0.4">9:41</text>
+  <rect x="472" y="42" width="16" height="8" rx="2" fill="#0a84ff" opacity="0.3"/>
+  <rect x="490" y="38" width="2" height="6" rx="1" fill="#30d158" opacity="0.3"/>
+  <rect x="494" y="36" width="2" height="8" rx="1" fill="#30d158" opacity="0.3"/>
+  <rect x="498" y="34" width="2" height="10" rx="1" fill="#30d158" opacity="0.3"/>
+  <rect x="502" y="32" width="2" height="12" rx="1" fill="#30d158" opacity="0.3"/>
+  <!-- App header -->
+  <rect x="296" y="60" width="208" height="40" rx="10" fill="#0a84ff" fill-opacity="0.1"/>
+  <circle cx="316" cy="80" r="10" fill="#0a84ff" opacity="0.2"/>
+  <text x="316" y="87" font-family="system-ui,sans-serif" font-size="16" font-weight="bold" fill="#0a84ff" opacity="0.5">T</text>
+  <text x="360" y="85" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" opacity="0.6">Dashboard</text>
+  <!-- Cards -->
+  <rect x="296" y="110" width="208" height="70" rx="12" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <rect x="310" y="122" width="60" height="6" rx="3" fill="#ffffff" opacity="0.06"/>
+  <text x="310" y="153" font-family="system-ui,sans-serif" font-size="22" font-weight="bold" fill="#0a84ff" opacity="0.5">$12,450</text>
+  <rect x="310" y="162" width="80" height="4" rx="2" fill="#30d158" opacity="0.3"/>
+  <rect x="296" y="190" width="98" height="70" rx="12" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <rect x="310" y="202" width="40" height="6" rx="3" fill="#ffffff" opacity="0.06"/>
+  <text x="312" y="232" font-family="system-ui,sans-serif" font-size="18" font-weight="bold" fill="#bf5af2" opacity="0.4">842</text>
+  <rect x="406" y="190" width="98" height="70" rx="12" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <rect x="420" y="202" width="40" height="6" rx="3" fill="#ffffff" opacity="0.06"/>
+  <text x="420" y="232" font-family="system-ui,sans-serif" font-size="18" font-weight="bold" fill="#0a84ff" opacity="0.4">356</text>
+  <!-- List items -->
+  <rect x="296" y="272" width="208" height="44" rx="10" fill="#ffffff" opacity="0.03"/>
+  <rect x="310" y="286" width="100" height="8" rx="4" fill="#ffffff" opacity="0.08"/>
+  <rect x="310" y="300" width="60" height="5" rx="2.5" fill="#ffffff" opacity="0.04"/>
+  <rect x="296" y="322" width="208" height="44" rx="10" fill="#ffffff" opacity="0.03"/>
+  <rect x="310" y="336" width="120" height="8" rx="4" fill="#ffffff" opacity="0.08"/>
+  <rect x="310" y="350" width="80" height="5" rx="2.5" fill="#ffffff" opacity="0.04"/>
+  <rect x="296" y="372" width="208" height="44" rx="10" fill="#ffffff" opacity="0.03"/>
+  <rect x="310" y="386" width="90" height="8" rx="4" fill="#ffffff" opacity="0.08"/>
+  <rect x="310" y="400" width="50" height="5" rx="2.5" fill="#ffffff" opacity="0.04"/>
+  <!-- Bottom nav -->
+  <rect x="296" y="432" width="208" height="28" rx="14" fill="#ffffff" fill-opacity="0.04"/>
+  <circle cx="345" cy="446" r="6" fill="#0a84ff" opacity="0.3"/>
+  <circle cx="400" cy="446" r="6" fill="#ffffff" opacity="0.1"/>
+  <circle cx="455" cy="446" r="6" fill="#ffffff" opacity="0.1"/>
+</svg>

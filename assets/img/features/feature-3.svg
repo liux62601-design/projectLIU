@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <circle cx="60" cy="60" r="48" fill="#0a84ff" fill-opacity="0.08"/>
+  <rect x="30" y="28" width="60" height="64" rx="6" fill="none" stroke="#0a84ff" stroke-width="2.5"/>
+  <rect x="30" y="28" width="60" height="18" rx="6" fill="#0a84ff" fill-opacity="0.1"/>
+  <circle cx="38" cy="37" r="3" fill="#ff453a"/>
+  <circle cx="48" cy="37" r="3" fill="#ff9f0a"/>
+  <circle cx="58" cy="37" r="3" fill="#30d158"/>
+  <text x="42" y="62" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.6">$</text>
+  <text x="52" y="62" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.8">npm</text>
+  <text x="73" y="62" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.6">run</text>
+  <text x="42" y="76" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.8">build</text>
+  <rect x="42" y="80" width="36" height="2" fill="#0a84ff" opacity="0.3"/>
+</svg>

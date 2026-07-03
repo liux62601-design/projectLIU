@@ -1,0 +1,49 @@
+{
+  "id": "getting-started",
+  "title": "快速入门指南",
+  "description": "了解 TechTutorial Pro 平台的基础知识和快速上手方法。",
+  "category": "入门",
+  "tags": ["入门", "基础", "概览"],
+  "date": "2026-06-22",
+  "content": [
+    {"type": "heading", "level": 2, "text": "平台概述"},
+    {"type": "paragraph", "text": "TechTutorial Pro 是一个面向开发者的全方位技术教程平台。无论您是嵌入式开发新手还是资深工程师，这里都有适合您的学习资源。"},
+    {"type": "paragraph", "text": "本平台支持以下核心功能：**教程中心**（结构化教程内容）、**下载中心**（SDK、固件、工具）、**代码示例**（在线高亮与复制）、**搜索功能**（全文检索）、**暗黑模式**（护眼阅读）。"},
+
+    {"type": "heading", "level": 2, "text": "系统架构"},
+    {"type": "paragraph", "text": "TechTutorial Pro 采用纯静态网站架构，基于以下技术栈构建："},
+    {"type": "code", "language": "text", "code": "HTML5 + CSS3 + JavaScript (ES6)\nGitHub Pages 部署\nGitHub Actions CI/CD\nService Worker (PWA)\n无后端 · 无数据库 · 纯前端"},
+    {"type": "paragraph", "text": "这种架构带来了诸多优势：**零服务器成本**、**毫秒级加载**、**HTTPS 加密**、**全球 CDN 加速**、**自动扩容**，以及 **99.9% 的可用性**。"},
+
+    {"type": "heading", "level": 2, "text": "快速导航"},
+    {"type": "paragraph", "text": "网站主要分为以下几个模块："},
+    {"type": "list", "ordered": false, "items": [
+      "**首页** — 项目概览、核心特性和展示",
+      "**教程中心** — 结构化的技术教程，支持搜索和分类",
+      "**下载中心** — SDK、固件、工具和源代码下载",
+      "**FAQ** — 常见问题解答",
+      "**联系我们** — 反馈和建议渠道"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "开发板介绍"},
+    {"type": "paragraph", "text": "我们的硬件平台基于 ARM Cortex-M7 架构，主频 480MHz，配备 1MB SRAM 和 16MB Flash 存储。支持 Wi-Fi 6、BLE 5.3 和 Ethernet 连接。"},
+    {"type": "image", "src": "../assets/img/hardware/hardware-1.svg", "alt": "开发板实物图", "caption": "图1：TechTutorial Pro 开发板"},
+
+    {"type": "heading", "level": 2, "text": "开发流程"},
+    {"type": "list", "ordered": true, "items": [
+      "安装 SDK 和开发工具链",
+      "创建新项目",
+      "编写代码",
+      "编译和烧录",
+      "调试和测试",
+      "部署到生产环境"
+    ]},
+
+    {"type": "heading", "level": 3, "text": "示例代码：LED 闪烁"},
+    {"type": "paragraph", "text": "以下是一个经典的 LED 闪烁示例，使用 C 语言编写："},
+    {"type": "code", "language": "c", "code": "#include <stdio.h>\n#include \"board.h\"\n#include \"gpio.h\"\n\n#define LED_PIN  GPIO_PIN_13\n#define DELAY_MS  500\n\nint main(void) {\n    board_init();\n    gpio_init(LED_PIN, GPIO_MODE_OUTPUT);\n    \n    printf(\"LED Blink Demo Started!\\n\");\n    \n    while (1) {\n        gpio_toggle(LED_PIN);\n        delay_ms(DELAY_MS);\n    }\n    \n    return 0;\n}"},
+
+    {"type": "heading", "level": 2, "text": "下一步"},
+    {"type": "paragraph", "text": "现在您已经了解了平台的基本情况，建议继续阅读 **[[环境安装与配置]](installation)** 教程来搭建您的开发环境。您也可以直接跳转到 **[[第一个项目]](quick-start)** 开始动手实践。"}
+  ]
+}

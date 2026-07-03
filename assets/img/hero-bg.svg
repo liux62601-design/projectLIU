@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+  <defs>
+    <radialGradient id="glowBlue" cx="35%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0a84ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPurple" cx="65%" cy="60%" r="45%">
+      <stop offset="0%" stop-color="#bf5af2" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#bf5af2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCenter" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dotGrid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="0.8" fill="#ffffff" opacity="0.04"/>
+    </pattern>
+    <pattern id="lineGrid" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M 0 60 L 120 60" stroke="#ffffff" stroke-width="0.3" opacity="0.03"/>
+      <path d="M 60 0 L 60 120" stroke="#ffffff" stroke-width="0.3" opacity="0.03"/>
+    </pattern>
+    <linearGradient id="lineFade" x1="0" y1="0" x2="1440" y2="900">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="#bf5af2" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0a84ff" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="#000000"/>
+  <rect width="1440" height="900" fill="url(#glowBlue)"/>
+  <rect width="1440" height="900" fill="url(#glowPurple)"/>
+  <rect width="1440" height="900" fill="url(#glowCenter)"/>
+  <rect width="1440" height="900" fill="url(#dotGrid)"/>
+  <rect width="1440" height="900" fill="url(#lineGrid)"/>
+  <g opacity="0.03" stroke="#0a84ff" stroke-width="0.5">
+    <line x1="0" y1="300" x2="1440" y2="300"/>
+    <line x1="0" y1="600" x2="1440" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="960" y1="0" x2="960" y2="900"/>
+  </g>
+  <g opacity="0.02" stroke="#bf5af2" stroke-width="0.3">
+    <line x1="0" y1="150" x2="1440" y2="150"/>
+    <line x1="0" y1="450" x2="1440" y2="450"/>
+    <line x1="0" y1="750" x2="1440" y2="750"/>
+    <line x1="240" y1="0" x2="240" y2="900"/>
+    <line x1="720" y1="0" x2="720" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+  <circle cx="720" cy="200" r="1.5" fill="#0a84ff" opacity="0.1"/>
+  <circle cx="300" cy="500" r="1" fill="#bf5af2" opacity="0.08"/>
+  <circle cx="1100" cy="650" r="1.2" fill="#0a84ff" opacity="0.06"/>
+</svg>

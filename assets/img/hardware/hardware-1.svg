@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <defs>
+    <linearGradient id="hw1board" x1="0" y1="0" x2="600" y2="400">
+      <stop offset="0%" stop-color="#2c2c2e"/>
+      <stop offset="100%" stop-color="#1c1c1e"/>
+    </linearGradient>
+    <linearGradient id="hw1chip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#bf5af2" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="hw1edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#bf5af2" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="16" fill="url(#hw1board)"/>
+  <rect width="600" height="400" rx="16" fill="none" stroke="url(#hw1edge)" stroke-width="1"/>
+  <!-- Board outline -->
+  <rect x="40" y="30" width="520" height="340" rx="12" fill="#1c1c1e" stroke="#3a3a3c" stroke-width="1.5"/>
+  <!-- Mounting holes -->
+  <circle cx="60" cy="50" r="6" fill="none" stroke="#3a3a3c" stroke-width="1"/>
+  <circle cx="540" cy="50" r="6" fill="none" stroke="#3a3a3c" stroke-width="1"/>
+  <circle cx="60" cy="350" r="6" fill="none" stroke="#3a3a3c" stroke-width="1"/>
+  <circle cx="540" cy="350" r="6" fill="none" stroke="#3a3a3c" stroke-width="1"/>
+  <!-- Main MCU chip -->
+  <rect x="180" y="140" width="140" height="140" rx="6" fill="#1c1c1e" stroke="#3a3a3c" stroke-width="1"/>
+  <rect x="180" y="140" width="140" height="140" rx="6" fill="url(#hw1chip)"/>
+  <rect x="200" y="160" width="100" height="28" rx="4" fill="#0a84ff" opacity="0.12"/>
+  <text x="250" y="179" font-family="monospace" font-size="9" fill="#0a84ff" opacity="0.5" text-anchor="middle">STM32F4</text>
+  <text x="250" y="205" font-family="monospace" font-size="7" fill="#ffffff" opacity="0.15" text-anchor="middle">ARM Cortex-M4</text>
+  <circle cx="220" cy="235" r="10" fill="#0a84ff" opacity="0.1"/>
+  <circle cx="250" cy="235" r="10" fill="#bf5af2" opacity="0.08"/>
+  <circle cx="280" cy="235" r="10" fill="#0a84ff" opacity="0.1"/>
+  <!-- Pin rows -->
+  <g fill="#0a84ff" opacity="0.2">
+    <rect x="187" y="142" width="126" height="2"/>
+    <rect x="187" y="276" width="126" height="2"/>
+    <rect x="182" y="147" width="2" height="126"/>
+    <rect x="316" y="147" width="2" height="126"/>
+  </g>
+  <!-- USB port -->
+  <rect x="460" y="260" width="60" height="24" rx="4" fill="none" stroke="#3a3a3c" stroke-width="1.5"/>
+  <rect x="466" y="266" width="8" height="12" rx="1" fill="#ffffff" opacity="0.06"/>
+  <rect x="500" y="266" width="14" height="12" rx="1" fill="#ffffff" opacity="0.06"/>
+  <text x="490" y="295" font-family="system-ui,sans-serif" font-size="7" fill="#ffffff" opacity="0.15" text-anchor="middle">USB-C</text>
+  <!-- Power LED -->
+  <circle cx="460" cy="105" r="4" fill="#30d158" opacity="0.5"/>
+  <circle cx="460" cy="105" r="8" fill="#30d158" opacity="0.08"/>
+  <!-- Small components -->
+  <rect x="80" y="100" width="30" height="16" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="80" y="140" width="30" height="16" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="80" y="180" width="30" height="16" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="80" y="220" width="30" height="16" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="80" y="260" width="30" height="16" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="360" y="100" width="20" height="12" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="390" y="100" width="20" height="12" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="360" y="140" width="20" height="12" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="390" y="140" width="20" height="12" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="360" y="180" width="20" height="12" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="390" y="180" width="20" height="12" rx="2" fill="none" stroke="#3a3a3c" stroke-width="0.8"/>
+  <!-- Traces -->
+  <g stroke="#0a84ff" stroke-width="0.5" opacity="0.12">
+    <polyline points="110,108 160,108 160,150 180,150"/>
+    <polyline points="110,148 160,148 160,170 180,170"/>
+    <polyline points="110,188 160,188 160,190 180,190"/>
+    <polyline points="110,228 160,228 160,210 180,210"/>
+    <polyline points="110,268 160,268 160,230 180,230"/>
+  </g>
+  <!-- Debug header -->
+  <rect x="450" y="100" width="12" height="12" rx="1" fill="#0a84ff" opacity="0.1" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="466" y="100" width="12" height="12" rx="1" fill="#0a84ff" opacity="0.08" stroke="#3a3a3c" stroke-width="0.8"/>
+  <rect x="458" y="84" width="12" height="12" rx="1" fill="#0a84ff" opacity="0.08" stroke="#3a3a3c" stroke-width="0.8"/>
+  <text x="490" y="113" font-family="system-ui,sans-serif" font-size="6" fill="#ffffff" opacity="0.12">SWD</text>
+</svg>

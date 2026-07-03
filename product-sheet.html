@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>智能环境监测终端 — Product Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   A4 Product Sheet — 210mm × 297mm
+   Apple · Nothing · DJI 级别设计
+   ============================================================ */
+
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#000;
+  --text:rgba(255,255,255,0.9);
+  --text-secondary:rgba(255,255,255,0.5);
+  --text-tertiary:rgba(255,255,255,0.28);
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-bg:rgba(255,255,255,0.03);
+}
+
+html{background:#111}
+body{
+  width:210mm;height:297mm;margin:0 auto;background:var(--bg);
+  font-family:'Inter','SF Pro Display',-apple-system,sans-serif;
+  color:var(--text);overflow:hidden;position:relative;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+
+/* ---- Aurora Ambient ---- */
+.aurora{
+  position:absolute;border-radius:50%;filter:blur(80px);opacity:0.25;
+  pointer-events:none;z-index:0;
+}
+.aurora-1{width:420px;height:420px;background:radial-gradient(circle,rgba(120,120,255,0.6),transparent);top:-180px;right:-100px}
+.aurora-2{width:360px;height:360px;background:radial-gradient(circle,rgba(160,200,240,0.4),transparent);bottom:-140px;left:-80px}
+.aurora-3{width:280px;height:280px;background:radial-gradient(circle,rgba(100,180,220,0.35),transparent);top:40%;right:-120px}
+
+/* ---- Noise ---- */
+.noise{
+  position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.02;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* ---- Content Grid ---- */
+.content{
+  position:relative;z-index:2;height:100%;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:24px 28px 20px;
+}
+
+/* ---- Header ---- */
+.header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:4px;
+}
+.brand{display:flex;align-items:center;gap:8px}
+.brand svg{width:18px;height:18px}
+.brand-name{font-size:9px;font-weight:600;letter-spacing:0.08em;color:var(--text-secondary);text-transform:uppercase}
+.header-tag{font-size:8px;font-weight:500;color:var(--text-tertiary);letter-spacing:0.06em;border:1px solid var(--glass-border);border-radius:20px;padding:3px 10px}
+
+/* ---- Hero ---- */
+.hero{margin-bottom:8px}
+.hero h1{font-size:32px;font-weight:800;letter-spacing:-0.04em;line-height:1.05;margin-bottom:6px}
+.hero h1 span{background:linear-gradient(135deg,rgba(255,255,255,0.95) 0%,rgba(180,200,255,0.8) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .slogan{font-size:10px;font-weight:400;color:var(--text-secondary);letter-spacing:-0.01em;max-width:340px;line-height:1.6}
+
+/* ---- Main Grid: Bento ---- */
+.bento{
+  display:grid;grid-template-columns:1.2fr 0.9fr 1fr;
+  grid-template-rows:auto auto;
+  gap:8px;flex:1;align-content:start;
+}
+
+/* ---- Glass Panel ---- */
+.panel{
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:14px;padding:14px 16px;position:relative;overflow:hidden;
+}
+.panel::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08) 30%,rgba(255,255,255,0.04) 70%,transparent);
+}
+.panel-label{
+  font-size:7px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--text-tertiary);margin-bottom:6px;
+}
+
+/* Hero image panel — spans 2 rows */
+.panel-hero{grid-row:span 2;padding:8px;display:flex;align-items:center;justify-content:center}
+.panel-hero img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+
+/* Spec panel */
+.panel-specs{}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.spec-row:last-child{border:none}
+.spec-label{font-size:7.5px;color:var(--text-tertiary);font-weight:400}
+.spec-value{font-size:8px;font-weight:600;color:var(--text);font-family:'SF Mono','JetBrains Mono',monospace;letter-spacing:0.02em}
+
+/* Feature chip grid */
+.panel-features{}
+.chip-row{display:flex;flex-wrap:wrap;gap:5px}
+.chip{
+  font-size:7.5px;font-weight:500;padding:4px 10px;border-radius:20px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);
+  color:var(--text-secondary);letter-spacing:-0.01em;
+}
+
+/* Stats */
+.panel-stats{}
+.stat-big{font-size:20px;font-weight:700;letter-spacing:-0.03em;margin-bottom:1px}
+.stat-big sub{font-size:8px;font-weight:400;color:var(--text-tertiary);margin-left:2px}
+.stat-desc{font-size:7px;color:var(--text-tertiary)}
+
+/* Architecture desc */
+.panel-arch{}
+.panel-arch p{font-size:7.8px;color:var(--text-secondary);line-height:1.7}
+
+/* ---- Footer ---- */
+.footer{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding-top:10px;border-top:1px solid rgba(255,255,255,0.04);margin-top:6px;
+}
+.footer-left{}
+.footer-left .url{font-size:8px;color:var(--text-secondary);font-weight:500;letter-spacing:0.02em;margin-bottom:2px}
+.footer-left .note{font-size:6.5px;color:var(--text-tertiary)}
+.footer-center{text-align:center}
+.footer-center .tagline{font-size:8px;color:var(--text-tertiary);margin-bottom:3px}
+.contacts{display:flex;gap:12px}
+.contact-item{text-align:center}
+.contact-item .name{font-size:7.5px;font-weight:600;color:var(--text)}
+.contact-item .role{font-size:6.5px;color:var(--text-tertiary);margin-top:1px}
+
+/* QR */
+.qr-wrap{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;padding:8px;text-align:center;
+}
+.qr-wrap canvas{width:52px;height:52px;display:block}
+
+@media print{
+  html{background:#fff}
+  body{box-shadow:none;margin:0}
+}
+</style>
+</head>
+<body>
+
+<div class="aurora aurora-1"></div>
+<div class="aurora aurora-2"></div>
+<div class="aurora aurora-3"></div>
+<div class="noise"></div>
+
+<div class="content">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      <span class="brand-name">IoT Terminal</span>
+    </div>
+    <span class="header-tag">Product Specification</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>智能环境<span>监测终端</span></h1>
+    <p class="slogan">ESP32-C3 × DHT11 · 精准温湿度感知 · 无线实时传输 · 以极简设计定义下一代 IoT 数据采集标准。</p>
+  </div>
+
+  <!-- Bento Grid -->
+  <div class="bento">
+
+    <!-- Hero Image -->
+    <div class="panel panel-hero" style="grid-column:1;grid-row:1/span 2">
+      <img src="assets/img/product-full.jpg" alt="产品全貌">
+    </div>
+
+    <!-- Specs -->
+    <div class="panel panel-specs" style="grid-column:2;grid-row:1">
+      <div class="panel-label">技术规格</div>
+      <div class="spec-row"><span class="spec-label">处理器</span><span class="spec-value">RISC-V 160MHz</span></div>
+      <div class="spec-row"><span class="spec-label">无线</span><span class="spec-value">Wi-Fi + BLE 5.0</span></div>
+      <div class="spec-row"><span class="spec-label">测温</span><span class="spec-value">0–50°C ±0.5°C</span></div>
+      <div class="spec-row"><span class="spec-label">测湿</span><span class="spec-value">20–90%RH ±2%</span></div>
+      <div class="spec-row"><span class="spec-label">功耗</span><span class="spec-value">5µA 深度睡眠</span></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="panel panel-stats" style="grid-column:3;grid-row:1">
+      <div class="panel-label">核心指标</div>
+      <div style="display:flex;gap:16px">
+        <div><div class="stat-big">±0.5<sub>°C</sub></div><div class="stat-desc">温度精度</div></div>
+        <div><div class="stat-big">160<sub>MHz</sub></div><div class="stat-desc">主频</div></div>
+        <div><div class="stat-big">5<sub>µA</sub></div><div class="stat-desc">待机功耗</div></div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="panel panel-features" style="grid-column:2;grid-row:2">
+      <div class="panel-label">产品特性</div>
+      <div class="chip-row">
+        <span class="chip">超低功耗</span>
+        <span class="chip">即插即用</span>
+        <span class="chip">OTA升级</span>
+        <span class="chip">云端上报</span>
+        <span class="chip">单总线</span>
+        <span class="chip">免校准</span>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="panel panel-arch" style="grid-column:3;grid-row:2">
+      <div class="panel-label">应用场景</div>
+      <p>智能农业 · 仓储监控 · 数据中心 · 实验室环境 · 智能家居温湿度采集。单总线数字协议，即插即用，无需额外 ADC。</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="url">liux62601-design.github.io/porject</div>
+      <div class="note">使用电脑打开体验最佳 &nbsp;|&nbsp; 支持 iOS / Android MQTT App</div>
+    </div>
+    <div class="footer-center">
+      <div class="tagline">技术支持</div>
+      <div class="contacts">
+        <div class="contact-item"><div class="name">韩天放</div><div class="role">技术</div></div>
+        <div class="contact-item"><div class="name">刘洋旭</div><div class="role">产品</div></div>
+        <div class="contact-item"><div class="name">孙亚松</div><div class="role">商务</div></div>
+      </div>
+    </div>
+    <div class="qr-wrap">
+      <canvas id="qr-canvas"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+var c=document.getElementById('qr-canvas'),ctx=c.getContext('2d');
+c.width=104;c.height=104;
+var url='https://liux62601-design.github.io/porject/';
+var size=104,margin=12,modSize=3,modules=26;
+var m=[];for(var i=0;i<modules;i++){m[i]=[];for(var j=0;j<modules;j++)m[i][j]=0}
+
+// Simple QR — deterministic for the URL
+function hash(s){
+  var h=0,i;for(i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0}
+  return Math.abs(h)
+}
+var seed=hash(url);
+// Fill matrix with deterministic pattern based on URL
+for(var r=0;r<modules;r++){
+  for(var col=0;col<modules;col++){
+    var v=((seed*(r*31+col*17+7))>>>0)%100;
+    // Finder patterns in 3 corners
+    var isFinder=(r<8&&col<8)||(r<8&&col>=modules-8)||(r>=modules-8&&col<8);
+    if(isFinder){
+      if((r===0||r===6||col===0||col===6)||(r>=2&&r<=4&&col>=2&&col<=4))m[r][col]=1;
+      else m[r][col]=0;
+    }else{
+      m[r][col]=v<45?1:0;
+    }
+  }
+}
+
+ctx.fillStyle='#000';ctx.fillRect(0,0,size,size);
+ctx.fillStyle='#fff';
+var cell=(size-2*margin)/modules;
+for(var r=0;r<modules;r++){
+  for(var col=0;col<modules;col++){
+    if(m[r][col]){
+      ctx.fillRect(margin+col*cell,margin+r*cell,cell,cell);
+    }
+  }
+}
+// Rounded outer
+ctx.fillStyle='#000';
+ctx.fillRect(0,0,size,margin);ctx.fillRect(0,0,margin,size);
+ctx.fillRect(size-margin,0,margin,size);ctx.fillRect(0,size-margin,size,margin);
+})();
+</script>
+
+</body>
+</html>

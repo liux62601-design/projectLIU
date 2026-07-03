@@ -1,0 +1,81 @@
+{
+  "id": "quick-start",
+  "title": "快速入门指南 — 怎么用这个设备",
+  "description": "从开机配网到日常使用，一篇搞定。",
+  "category": "入门",
+  "tags": ["快速入门", "配网", "使用说明"],
+  "date": "2026-06-22",
+  "author": "TechTutorial Team",
+  "readingTime": 5,
+  "difficulty": "beginner",
+  "content": [
+
+    {"type": "heading", "level": 2, "text": "开关在哪"},
+    {"type": "callout", "calloutType": "tip", "text": "拨上去 → 开机 &nbsp;&nbsp;|&nbsp;&nbsp; 拨下来 → 关机"},
+    {"type": "paragraph", "text": "没电了就用 **Type-C 线** 充电，跟手机充电一样。"},
+
+    {"type": "heading", "level": 2, "text": "灯是什么意思"},
+    {"type": "table", "headers": ["灯的状态", "意思", "你要做什么"],
+      "rows": [
+        ["💡 一闪一闪（慢）", "等人来配网", "下一步"],
+        ["💡 一直亮着", "正常工作中", "啥也不用做"],
+        ["💡 不亮", "正在开机或没电", "等一等或充电"]
+      ]
+    },
+
+    {"type": "heading", "level": 2, "text": "第一次用（配网）"},
+
+    {"type": "heading", "level": 3, "text": "第 1 步：开机"},
+    {"type": "paragraph", "text": "打开开关，等大约 **10 秒**，看到灯**一闪一闪**就可以下一步。"},
+
+    {"type": "heading", "level": 3, "text": "第 2 步：手机连热点"},
+    {"type": "paragraph", "text": "打开手机 WiFi，找到一个叫 **alter** 的，点它连接。"},
+
+    {"type": "heading", "level": 3, "text": "第 3 步：填表"},
+    {"type": "paragraph", "text": "连上后手机自己会弹出一个网页（没弹就打开浏览器输入 **192.168.4.1**）。"},
+    {"type": "paragraph", "text": "在网页里填："},
+    {"type": "code", "language": "text", "code": "WiFi 名字：（填你要连的 WiFi 叫啥）\nWiFi 密码：（填这个 WiFi 的密码，最少 8 位）"},
+    {"type": "paragraph", "text": "点 **保存**。"},
+
+    {"type": "heading", "level": 3, "text": "第 4 步：开手机热点"},
+    {"type": "paragraph", "text": "看到「已保存！」之后，赶紧把手机变成热点："},
+    {"type": "code", "language": "text", "code": "iPhone：  设置 → 个人热点 → 打开\n安卓：    设置 → 热点 → 打开"},
+    {"type": "callout", "calloutType": "warning", "text": "热点名字和密码要跟刚才填的**一模一样**！"},
+
+    {"type": "heading", "level": 3, "text": "第 5 步：等一等"},
+    {"type": "paragraph", "text": "设备自己会重启，过几秒灯**一直亮**就成功了。"},
+
+    {"type": "heading", "level": 2, "text": "想换个 WiFi 怎么办"},
+    {"type": "heading", "level": 3, "text": "办法 1（简单）"},
+    {"type": "paragraph", "text": "连上 alter → 打开网页 192.168.4.1 → 点最下面的**清除** → 重新配网"},
+    {"type": "heading", "level": 3, "text": "办法 2（备用）"},
+    {"type": "paragraph", "text": "开机后 3 秒内，拿根导线一头碰 **GPIO8**，一头碰 **GND** → 灯快闪 6 下 = 清空了 → 重新配网"},
+
+    {"type": "heading", "level": 2, "text": "灯不对劲怎么办"},
+    {"type": "table", "headers": ["问题", "咋办"],
+      "rows": [
+        ["灯一直不亮", "充电，还不行就重开开关"],
+        ["灯闪但搜不到 alter", "关了重开"],
+        ["灯一直亮但没数据", "等着，自己会修好"]
+      ]
+    },
+
+    {"type": "heading", "level": 2, "text": "它平时在干嘛"},
+    {"type": "paragraph", "text": "开机连上 WiFi 后就自己干活了："},
+    {"type": "code", "language": "text", "code": "测温度湿度 → 发到网上 → 过 1 秒 → 再测 → 再发"},
+    {"type": "paragraph", "text": "你不用管它。"},
+
+    {"type": "heading", "level": 2, "text": "记几个数"},
+    {"type": "list", "ordered": false, "items": [
+      "热点叫 **alter**，没密码",
+      "网页地址 **192.168.4.1**",
+      "开机等 **10 秒**",
+      "配网时**热点名字密码要一模一样**"
+    ]},
+
+    {"type": "divider", "text": ""},
+
+    {"type": "callout", "calloutType": "info", "text": "END — 还有问题？看侧边栏的**常见问题排查**或联系我们。"}
+
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "installation",
+  "title": "环境安装与配置 — 下载 App",
+  "description": "iOS / Android 手机端 MQTT 软件下载与安装指南。",
+  "category": "入门",
+  "tags": ["安装", "MQTT", "iOS", "Android"],
+  "date": "2026-06-22",
+  "author": "TechTutorial Team",
+  "readingTime": 3,
+  "difficulty": "beginner",
+  "content": [
+
+    {"type": "heading", "level": 2, "text": "iOS 用户"},
+
+    {"type": "paragraph", "text": "打开 App Store，搜索 **MQTT**，下载下图所示的软件。"},
+
+    {"type": "callout", "calloutType": "info", "text": "具体软件请参考下方截图，认准图标和名称。"},
+
+    {"type": "image", "src": "assets/img/mqtt-ios.jpg", "alt": "iOS MQTT 软件截图", "caption": "iOS 用户请在 App Store 搜索下载此软件"},
+
+    {"type": "divider", "text": ""},
+
+    {"type": "heading", "level": 2, "text": "Android 用户"},
+
+    {"type": "paragraph", "text": "点击下方按钮下载安装包（ZIP 文件），下载后解压并安装 APK。"},
+
+    {"type": "callout", "calloutType": "warning", "text": "安装前请确保手机已开启「允许安装未知来源应用」。设置 → 安全 → 未知来源 → 打开。"},
+
+    {"type": "paragraph", "text": "👇 点击下载 Android 安装包：[📥 下载 Android 安装包 (ZIP)](../assets/files/app-android.zip)"},
+
+    {"type": "divider", "text": ""},
+
+    {"type": "callout", "calloutType": "tip", "text": "下载安装完成后，回到侧边栏打开「快速入门指南」继续配网操作。"}
+
+  ]
+}

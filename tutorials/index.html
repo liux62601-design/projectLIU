@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechTutorial Pro 教程中心 — 结构化的技术教程内容，支持搜索、分类筛选和代码高亮。从入门到精通，系统学习嵌入式开发。">
+  <meta name="keywords" content="技术教程,编程教程,嵌入式开发,代码高亮,教程中心,TechTutorial">
+  <meta name="author" content="TechTutorial Pro">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TechTutorial Pro — 教程中心">
+  <meta property="og:description" content="结构化的技术教程内容，支持搜索、分类筛选和代码高亮。从入门到精通，系统学习嵌入式开发。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tech-tutorial-pro.github.io/project/tutorials/">
+  <meta property="og:image" content="../assets/img/showcase/showcase-1.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="TechTutorial Pro">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TechTutorial Pro — 教程中心">
+  <meta name="twitter:description" content="结构化的技术教程内容，支持搜索、分类筛选和代码高亮。从入门到精通，系统学习嵌入式开发。">
+  <meta name="twitter:image" content="../assets/img/showcase/showcase-1.svg">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tech-tutorial-pro.github.io/project/tutorials/">
+
+  <!-- PWA -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="教程中心">
+  <link rel="apple-touch-icon" href="../assets/icons/icon-192.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/logo.svg">
+  <link rel="alternate icon" href="../favicon.ico">
+
+  <!-- Fonts: Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+
+  <!-- CSP -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob:;
+    script-src 'self';
+    connect-src 'self' https://formspree.io;
+    media-src 'self';
+    frame-src https://www.youtube.com https://player.bilibili.com;
+  ">
+
+  <title>教程中心 — TechTutorial Pro</title>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "教程中心",
+    "url": "https://tech-tutorial-pro.github.io/project/tutorials/",
+    "description": "结构化的技术教程内容，支持搜索、分类筛选和代码高亮。",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "TechTutorial Pro",
+      "url": "https://tech-tutorial-pro.github.io/project/"
+    }
+  }
+  </script>
+
+  <!-- ====== Tutorial Center Styles ====== -->
+  <style>
+    /* ---- Tutorial Layout ---- */
+    .tutorial-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr 240px;
+      gap: 0;
+      min-height: calc(100vh - var(--nav-height));
+      margin-top: var(--nav-height);
+      max-width: var(--max-width-wide);
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    /* ---- Left Sidebar ---- */
+    .tutorial-sidebar {
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem;
+      overflow-y: auto;
+      position: sticky;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      z-index: 10;
+    }
+
+    .sidebar-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.25rem;
+    }
+
+    /* Sidebar Search */
+    .sidebar-search {
+      position: relative;
+    }
+
+    .sidebar-search input {
+      width: 100%;
+      padding: 0.65rem 0.85rem 0.65rem 2.5rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .sidebar-search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .sidebar-search svg {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-tertiary);
+      pointer-events: none;
+    }
+
+    /* Category Filter List */
+    .cat-list {
+      list-style: none;
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .cat-list button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: left;
+    }
+
+    .cat-list button:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .cat-list button.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .cat-count {
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--bg-tertiary);
+      color: var(--text-tertiary);
+      padding: 0.15em 0.55em;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+    }
+
+    .cat-list button.active .cat-count {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Tag Cloud */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag-cloud .tag-chip {
+      display: inline-block;
+      padding: 0.25em 0.7em;
+      font-size: 0.78rem;
+      font-weight: 500;
+      font-family: inherit;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .tag-cloud .tag-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tag-cloud .tag-chip.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Tutorial List in Sidebar */
+    .tutorial-list-sidebar {
+      list-style: none;
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .tutorial-list-sidebar li a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .tutorial-list-sidebar li a:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .tutorial-list-sidebar li a.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tutorial-list-sidebar .tutorial-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+
+    .tutorial-list-sidebar a.active .tutorial-dot {
+      background: var(--accent);
+    }
+
+    /* ---- Main Content Area ---- */
+    .tutorial-main {
+      padding: 2rem 2.5rem;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+
+    .tutorial-main .tutorial-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tutorial-main .tutorial-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+
+    .tutorial-main .tutorial-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .tutorial-main .tutorial-meta-item svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .tutorial-main .tutorial-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .tutorial-main .tutorial-description {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-top: 0.75rem;
+    }
+
+    .tutorial-main .difficulty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25em 0.75em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      margin-left: 0.5rem;
+    }
+
+    .difficulty-beginner {
+      background: rgba(40, 205, 65, 0.15);
+      color: #28cd41;
+    }
+    .difficulty-intermediate {
+      background: rgba(255, 159, 10, 0.15);
+      color: #ff9f0a;
+    }
+    .difficulty-advanced {
+      background: rgba(255, 55, 95, 0.15);
+      color: #ff375f;
+    }
+
+    /* Tutorial Content Body */
+    .tutorial-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    .tutorial-body h2 {
+      font-size: 1.6rem;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .tutorial-body h3 {
+      font-size: 1.3rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .tutorial-body h4 {
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .tutorial-body h5 {
+      font-size: 1rem;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .tutorial-body h6 {
+      font-size: 0.95rem;
+      margin: 1rem 0 0.5rem;
+      color: var(--text-tertiary);
+    }
+
+    .tutorial-body p {
+      margin-bottom: 1.25rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .tutorial-body strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .tutorial-body a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .tutorial-body a:hover {
+      text-decoration: underline;
+    }
+
+    /* Inline code */
+    .tutorial-body code:not(pre code) {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.875em;
+      background: var(--code-bg);
+      color: var(--accent);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      border: 1px solid var(--border-light);
+    }
+
+    /* Code Blocks */
+    .tutorial-body .code-block-wrapper {
+      position: relative;
+      margin: 1.5rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .tutorial-body .code-block-wrapper .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+    }
+
+    .tutorial-body .code-block-wrapper .code-lang {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tutorial-body .code-block-wrapper pre {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      background: var(--code-bg);
+      padding: 1.25rem 1rem;
+      overflow-x: auto;
+    }
+
+    .tutorial-body .code-block-wrapper pre code {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .tutorial-body .copy-btn {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.75rem;
+      font-family: inherit;
+      font-weight: 500;
+      background: var(--bg-glass);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      z-index: 5;
+    }
+
+    .tutorial-body .copy-btn:hover {
+      background: var(--bg-glass-heavy);
+      color: var(--text-primary);
+    }
+
+    .tutorial-body .copy-btn.copied {
+      background: rgba(40, 205, 65, 0.2);
+      border-color: rgba(40, 205, 65, 0.4);
+      color: #28cd41;
+    }
+
+    /* Syntax Highlighting */
+    .hl-keyword { color: var(--code-keyword); font-weight: 500; }
+    .hl-string  { color: var(--code-string); }
+    .hl-comment { color: var(--code-comment); font-style: italic; }
+    .hl-function { color: var(--code-function); }
+    .hl-number  { color: var(--code-number); }
+    .hl-type    { color: var(--code-keyword); }
+    .hl-builtin { color: var(--code-function); }
+
+    /* Images */
+    .tutorial-body .tutorial-image {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .tutorial-body .tutorial-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .tutorial-body .tutorial-image figcaption {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      font-style: italic;
+    }
+
+    /* Lists */
+    .tutorial-body ul,
+    .tutorial-body ol {
+      margin: 1rem 0 1.25rem;
+      padding-left: 1.75rem;
+      color: var(--text-secondary);
+    }
+
+    .tutorial-body li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .tutorial-body ul ul,
+    .tutorial-body ol ol,
+    .tutorial-body ul ol,
+    .tutorial-body ol ul {
+      margin: 0.25rem 0 0.25rem;
+    }
+
+    /* Tables */
+    .tutorial-body .tutorial-table-wrapper {
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .tutorial-body table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .tutorial-body thead {
+      background: var(--bg-secondary);
+    }
+
+    .tutorial-body th {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .tutorial-body td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-secondary);
+    }
+
+    .tutorial-body tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tutorial-body tbody tr:hover {
+      background: var(--bg-secondary);
+    }
+
+    /* Blockquotes */
+    .tutorial-body blockquote {
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-gradient-subtle);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    .tutorial-body blockquote p {
+      margin-bottom: 0.5rem;
+    }
+
+    .tutorial-body blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Divider */
+    .tutorial-body hr {
+      margin: 2.5rem 0;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Callout Boxes */
+    .tutorial-body .callout {
+      margin: 1.5rem 0;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      border-left: 4px solid;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .tutorial-body .callout-warning {
+      background: rgba(255, 159, 10, 0.1);
+      border-color: #ff9f0a;
+      color: var(--text-primary);
+    }
+
+    .tutorial-body .callout-info {
+      background: rgba(10, 132, 255, 0.1);
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    .tutorial-body .callout-tip {
+      background: rgba(40, 205, 65, 0.1);
+      border-color: #28cd41;
+      color: var(--text-primary);
+    }
+
+    .tutorial-body .callout-title {
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Video Embed */
+    .tutorial-body .tutorial-video {
+      margin: 1.5rem 0;
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .tutorial-body .tutorial-video video {
+      width: 100%;
+      display: block;
+    }
+
+    .tutorial-body .tutorial-video iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+
+    /* Tutorial Links ([[title]](id)) */
+    .tutorial-body .tutorial-link {
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .tutorial-body .tutorial-link:hover {
+      color: var(--accent-hover);
+    }
+
+    /* ---- Right TOC Sidebar ---- */
+    .tutorial-toc-sidebar {
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border);
+      padding: 1.5rem 1.25rem;
+      overflow-y: auto;
+      position: sticky;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
+      z-index: 10;
+    }
+
+    .tutorial-toc-sidebar .toc-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tutorial-toc-sidebar nav {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .tutorial-toc-sidebar a {
+      display: block;
+      padding: 0.35rem 0;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      line-height: 1.4;
+    }
+
+    .tutorial-toc-sidebar a:hover {
+      color: var(--accent);
+    }
+
+    .tutorial-toc-sidebar a.toc-active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tutorial-toc-sidebar a.toc-h2 {
+      padding-left: 0;
+      font-weight: 500;
+    }
+
+    .tutorial-toc-sidebar a.toc-h3 {
+      padding-left: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+    }
+
+    .tutorial-toc-sidebar a.toc-h4 {
+      padding-left: 2rem;
+      font-size: 0.78rem;
+    }
+
+    /* ---- Prev/Next Navigation ---- */
+    .tutorial-nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .tutorial-nav-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      max-width: 45%;
+    }
+
+    .tutorial-nav-btn:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    .tutorial-nav-btn.prev {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .tutorial-nav-btn.next {
+      align-items: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .tutorial-nav-btn .nav-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+    }
+
+    .tutorial-nav-btn .nav-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    /* ---- Empty State ---- */
+    .tutorial-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .tutorial-empty .empty-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent-gradient-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .tutorial-empty .empty-icon svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .tutorial-empty h3 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .tutorial-empty p {
+      color: var(--text-secondary);
+      max-width: 400px;
+    }
+
+    /* ---- Loading Skeleton ---- */
+    .tutorial-skeleton {
+      padding: 2rem 0;
+    }
+
+    .tutorial-skeleton .sk-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .tutorial-skeleton .sk-title {
+      width: 60%;
+      height: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .tutorial-skeleton .sk-line {
+      width: 100%;
+      height: 1rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .tutorial-skeleton .sk-line.short {
+      width: 75%;
+    }
+
+    .tutorial-skeleton .sk-line.shorter {
+      width: 50%;
+    }
+
+    .tutorial-skeleton .sk-block {
+      width: 100%;
+      height: 180px;
+      margin-top: 1rem;
+      border-radius: var(--radius);
+    }
+
+    /* ---- Mobile Sidebar Toggle ---- */
+    .sidebar-toggle-btn {
+      display: none;
+      position: fixed;
+      bottom: 5rem;
+      left: 1rem;
+      z-index: 100;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      transition: all var(--transition);
+    }
+
+    .sidebar-toggle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .sidebar-toggle-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ---- Sidebar overlay for mobile ---- */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(0, 0, 0, 0.5);
+      transition: opacity var(--transition);
+    }
+
+    /* ---- Search Results in Sidebar ---- */
+    .no-results-message {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      text-align: center;
+      padding: 1rem 0.5rem;
+    }
+
+    /* ---- Active filter reset ---- */
+    .filter-reset {
+      font-size: 0.78rem;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      text-align: left;
+      padding: 0.25rem 0.5rem;
+      margin-top: 0.25rem;
+      transition: color var(--transition-fast);
+    }
+
+    .filter-reset:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 1199px) {
+      .tutorial-layout {
+        grid-template-columns: 260px 1fr 220px;
+      }
+      .tutorial-main {
+        padding: 1.75rem 2rem;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .tutorial-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .tutorial-sidebar {
+        position: fixed;
+        left: 0;
+        top: var(--nav-height);
+        width: 300px;
+        height: calc(100vh - var(--nav-height));
+        z-index: 95;
+        transform: translateX(-100%);
+        transition: transform var(--transition);
+        box-shadow: var(--shadow-lg);
+        border-right: 1px solid var(--border);
+      }
+
+      .tutorial-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .tutorial-toc-sidebar {
+        display: none;
+      }
+
+      .sidebar-toggle-btn {
+        display: flex;
+      }
+
+      .sidebar-overlay.open {
+        display: block;
+        opacity: 1;
+      }
+
+      .tutorial-main {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .tutorial-sidebar {
+        width: 85vw;
+        max-width: 320px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .tutorial-main {
+        padding: 1rem;
+      }
+
+      .tutorial-nav-bottom {
+        flex-direction: column;
+      }
+
+      .tutorial-nav-btn {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== Navigation ====== -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="TechTutorial Pro 首页">
+        <img src="../assets/img/logo.svg" alt="TechTutorial Pro Logo" width="32" height="32">
+        <span>TechTutorial</span>
+      </a>
+
+      <nav class="nav-links" role="navigation" aria-label="主导航">
+        <a href="../index.html#features">特性</a>
+        <a href="../index.html#showcase">展示</a>
+        <a href="../index.html#hardware">硬件</a>
+        <a href="../index.html#software">软件</a>
+        <a href="index.html" class="active">教程</a>
+        <a href="../downloads/index.html">下载</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#contact">联系我们</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="切换暗黑/明亮模式">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="打开菜单" aria-expanded="false">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="移动端菜单" aria-hidden="true">
+    <a href="../index.html">首页</a>
+    <a href="../index.html#features">特性</a>
+    <a href="../index.html#showcase">展示</a>
+    <a href="../index.html#hardware">硬件</a>
+    <a href="../index.html#software">软件</a>
+    <a href="index.html">教程</a>
+    <a href="../downloads/index.html">下载</a>
+    <a href="../index.html#faq">FAQ</a>
+    <a href="../index.html#contact">联系我们</a>
+  </div>
+
+  <!-- ====== Tutorial Layout ====== -->
+  <main id="tutorial-layout" class="tutorial-layout">
+
+    <!-- Left Sidebar -->
+    <aside class="tutorial-sidebar" id="tutorial-sidebar" aria-label="教程导航">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">搜索教程</div>
+        <div class="sidebar-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="search" id="tutorial-search" placeholder="搜索教程..." aria-label="搜索教程">
+        </div>
+      </div>
+
+      <div class="sidebar-section" id="category-section">
+        <div class="sidebar-section-title">分类</div>
+        <ul class="cat-list" id="cat-list">
+          <li><button data-cat="all" class="active">全部教程<span class="cat-count">5</span></button></li>
+          <li><button data-cat="入门">入门<span class="cat-count">2</span></button></li>
+          <li><button data-cat="开发">开发<span class="cat-count">1</span></button></li>
+          <li><button data-cat="进阶">进阶<span class="cat-count">1</span></button></li>
+          <li><button data-cat="支持">支持<span class="cat-count">1</span></button></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section" id="tag-section">
+        <div class="sidebar-section-title">标签</div>
+        <div class="tag-cloud" id="tag-cloud">
+          <!-- Populated by JS -->
+        </div>
+        <button class="filter-reset" id="filter-reset" style="display:none;">清除筛选</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <article class="tutorial-main" id="tutorial-main" aria-label="教程内容">
+      <!-- Empty State (initial) -->
+      <div class="tutorial-empty" id="tutorial-empty-initial">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            <line x1="8" y1="7" x2="16" y2="7"/>
+            <line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+        </div>
+        <h3>选择一个教程</h3>
+        <p>从左侧列表中选择您想学习的教程，或使用搜索功能查找您感兴趣的内容。</p>
+      </div>
+
+      <!-- Empty State (no results) -->
+      <div class="tutorial-empty hidden" id="tutorial-empty-search">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            <line x1="8" y1="8" x2="14" y2="14"/><line x1="14" y1="8" x2="8" y2="14"/>
+          </svg>
+        </div>
+        <h3>未找到结果</h3>
+        <p>未找到匹配的教程内容。请尝试其他关键词或清除筛选条件。</p>
+      </div>
+
+      <!-- Loading Skeleton -->
+      <div class="tutorial-skeleton hidden" id="tutorial-skeleton">
+        <div class="sk-item">
+          <div class="skeleton sk-title"></div>
+          <div class="skeleton sk-line short"></div>
+          <div class="skeleton sk-line shorter"></div>
+        </div>
+        <div class="sk-item">
+          <div class="skeleton sk-line"></div>
+          <div class="skeleton sk-line"></div>
+          <div class="skeleton sk-line shorter"></div>
+        </div>
+        <div class="sk-item">
+          <div class="skeleton sk-block"></div>
+        </div>
+        <div class="sk-item">
+          <div class="skeleton sk-line"></div>
+          <div class="skeleton sk-line"></div>
+          <div class="skeleton sk-line"></div>
+          <div class="skeleton sk-line shorter"></div>
+        </div>
+      </div>
+
+      <!-- Tutorial Content Container -->
+      <div id="tutorial-content" class="hidden"></div>
+    </article>
+
+    <!-- Right TOC Sidebar -->
+    <aside class="tutorial-toc-sidebar" id="toc-sidebar" aria-label="目录导航">
+      <div class="toc-title">目录</div>
+      <nav id="toc-nav">
+        <!-- Populated by JS -->
+      </nav>
+    </aside>
+  </main>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Sidebar Toggle Button (mobile) -->
+  <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="打开教程列表">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <!-- ====== Footer ====== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="nav-logo" style="margin-bottom: 1rem;">
+            <img src="../assets/img/logo.svg" alt="Logo" width="32" height="32">
+            <span>TechTutorial Pro</span>
+          </a>
+          <p>企业级技术教程平台。从入门到精通，为全球开发者提供高质量的技术教育资源。</p>
+          <div class="footer-social" style="margin-top: 1.5rem;">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>快速链接</h4>
+          <ul>
+            <li><a href="index.html">教程中心</a></li>
+            <li><a href="../downloads/index.html">下载中心</a></li>
+            <li><a href="../index.html#faq">常见问题</a></li>
+            <li><a href="../index.html#changelog">更新日志</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>资源</h4>
+          <ul>
+            <li><a href="index.html#/getting-started">入门指南</a></li>
+            <li><a href="index.html#/installation">安装指南</a></li>
+            <li><a href="index.html#/troubleshooting">故障排除</a></li>
+            <li><a href="../CONTRIBUTING.md">贡献指南</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <ul>
+            <li><a href="../index.html#contact">联系我们</a></li>
+            <li><a href="../LICENSE">许可证</a></li>
+            <li><a href="../SECURITY.md">安全政策</a></li>
+            <li><a href="../CHANGELOG.md">变更日志</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; <span id="current-year">2026</span> TechTutorial Pro. All rights reserved. MIT License.
+        </div>
+        <div class="footer-qr">
+          <canvas id="qrcode-canvas" width="80" height="80" aria-label="扫码访问本站"></canvas>
+          <span class="footer-qr-text">扫码访问<br>当前页面</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- PWA Install Prompt -->
+  <div class="pwa-install-prompt" id="pwa-install-prompt" aria-hidden="true">
+    <span class="prompt-text">将此应用添加到主屏幕，获得更好的体验</span>
+    <div class="prompt-actions">
+      <button class="btn btn-primary btn-sm" id="pwa-install-btn">安装</button>
+      <button class="btn btn-secondary btn-sm" id="pwa-dismiss-btn">以后再说</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script defer src="../assets/js/utils.js"></script>
+  <script defer src="../assets/js/theme.js"></script>
+  <script defer src="../assets/js/navigation.js"></script>
+  <script defer src="../assets/js/animations.js"></script>
+  <script defer src="../assets/js/tutorial-center.js"></script>
+  <script defer src="../assets/js/qrcode.js"></script>
+  <script defer src="../assets/js/pwa.js"></script>
+  <script defer src="../assets/js/main.js"></script>
+
+</body>
+</html>
