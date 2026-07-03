@@ -323,10 +323,12 @@ pre code{font-family:'SF Mono','JetBrains Mono',monospace}
 
 /* ---- Responsive ---- */
 @media(max-width:768px){
-  .sidebar{position:fixed;transform:translateX(-100%);-webkit-transform:translateX(-100%);transition:transform 0.3s ease;width:var(--sidebar-w);left:0;top:0;backdrop-filter:none;-webkit-backdrop-filter:none}
-  .sidebar.open{transform:translateX(0);-webkit-transform:translateX(0)}
-  .sidebar-header,.sidebar-footer{backdrop-filter:none;-webkit-backdrop-filter:none}
-  .content{padding:2.5rem 1rem 4rem}
+  body{display:block;overflow:visible;height:auto;min-height:100vh}
+  .sidebar{position:fixed;height:100%;height:100dvh;transform:translateX(-100%);-webkit-transform:translateX(-100%);transition:transform 0.3s ease;width:var(--sidebar-w);left:0;top:0;z-index:100;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,0,0,0.95)}
+  .sidebar.open{transform:translateX(0);-webkit-transform:translateX(0);box-shadow:0 0 60px rgba(0,0,0,0.6)}
+  .sidebar-header,.sidebar-footer{backdrop-filter:none;-webkit-backdrop-filter:none;background:transparent}
+  .main{display:block;overflow:visible;width:100%;z-index:1}
+  .content{padding:3rem 1rem 4rem;margin:0;border-radius:0;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border:none;min-height:auto}
   .showcase{padding:1.5rem 1rem 3rem}
   .glass-hero{padding:2rem 1rem}
   .glass-hero-content h2{font-size:1.4rem}
@@ -334,8 +336,7 @@ pre code{font-family:'SF Mono','JetBrains Mono',monospace}
   .glass-card .gc-layout{grid-template-columns:1fr;gap:1.25rem}
   .stats-row{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
-  body{overflow:hidden}
-  .main{overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .menu-btn{top:0.75rem;left:0.75rem}
 }
 .menu-btn{display:none;position:fixed;top:0.75rem;left:0.75rem;z-index:200;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);background:rgba(0,0,0,0.85);cursor:pointer;color:var(--text-secondary)}
 @media(max-width:768px){.menu-btn{display:flex}}
