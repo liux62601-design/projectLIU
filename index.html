@@ -86,7 +86,7 @@ body{
 [data-theme="light"] .stat-card{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.06)}
 [data-theme="light"] .stat-card:hover{background:rgba(0,0,0,0.04)}
 [data-theme="light"] .contact-card{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.06)}
-[data-theme="light"] .contact-card:hover{background:rgba(0,0,0,0.04)}
+[data-theme="light"] .contact-card:hover{background:rgba(0,0,0,0.04);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
 
 /* ---- Canvas Background ---- */
 #bg-canvas{
@@ -293,12 +293,17 @@ pre code{font-family:'SF Mono','JetBrains Mono',monospace}
 .contact-card{
   background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
   border-radius:var(--radius);padding:1.5rem;text-align:center;
-  transition:all var(--transition);cursor:default;
+  transition:all 0.45s cubic-bezier(0.22,0.61,0.36,1);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:80px;position:relative;overflow:hidden;
 }
-.contact-card:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);transform:translateY(-2px)}
-.contact-card .contact-name{font-size:1rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-primary)}
-.contact-card .contact-wechat{font-size:0.85rem;color:var(--text-secondary);font-family:'SF Mono','JetBrains Mono',monospace;letter-spacing:0.02em}
-.contact-card .contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-tertiary);margin-bottom:0.35rem}
+.contact-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.12);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.contact-card .contact-name{font-size:1.05rem;font-weight:600;color:var(--text-primary);transition:all 0.35s ease}
+.contact-card .contact-detail{max-height:0;opacity:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.22,0.61,0.36,1),opacity 0.4s ease 0.1s,margin-top 0.4s ease;margin-top:0}
+.contact-card:hover .contact-detail{max-height:80px;opacity:1;margin-top:0.5rem}
+.contact-card .cd-item{font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.2rem}
+.contact-card .cd-item .cd-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-tertiary);margin-right:0.35rem}
+.contact-card .cd-phone{font-family:'SF Mono','JetBrains Mono',monospace;letter-spacing:0.03em}
 
 /* ---- Button ---- */
 .btn{
@@ -612,7 +617,13 @@ function showContact(){
     '<h1 class="tutorial-title">联系我们</h1>'+
     '<p style="color:var(--text-secondary);margin-bottom:2rem">产品咨询 · 技术支持</p>'+
     '<div class="contact-grid" style="grid-template-columns:1fr;max-width:320px;margin:0 auto">'+
-      '<div class="contact-card"><div class="contact-label">联系我们</div><div class="contact-name">刘洋旭</div><div class="contact-wechat">ninesun10271208</div></div>'+
+      '<div class="contact-card">'+
+      '<div class="contact-name">刘洋旭</div>'+
+      '<div class="contact-detail">'+
+        '<div class="cd-item"><span class="cd-label">微信</span>ninesun10271208</div>'+
+        '<div class="cd-item"><span class="cd-label">电话</span><span class="cd-phone">19823925673</span></div>'+
+      '</div>'+
+    '</div>'+
     '</div></div>';
   if(window.location.hash!=='#/contact')history.pushState(null,'','#/contact');
   window.scrollTo(0,0);
