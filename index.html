@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>作品集</title>
+<meta name="description" content="个人工程作品集">
+<link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<style>
+/* ============================================================
+   Engineering Portfolio — Glassmorphism · Premium · Restrained
+   Layout: fixed sidebar + scrollable content (kept from base)
+   ============================================================ */
+
+/* ---- Reset ---- */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+/* ---- Design Tokens ---- */
+:root{
+  --bg:#000;
+  --surface:rgba(255,255,255,0.03);
+  --surface-hover:rgba(255,255,255,0.05);
+  --glass:rgba(255,255,255,0.06);
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-hover:rgba(255,255,255,0.10);
+  --text-primary:rgba(255,255,255,0.88);
+  --text-secondary:rgba(255,255,255,0.52);
+  --text-tertiary:rgba(255,255,255,0.28);
+  --accent:rgba(255,255,255,0.88);
+  --accent-dim:rgba(255,255,255,0.12);
+  --pcb-img-bg:rgba(0,0,0,0.4);
+  --radius-sm:10px;
+  --radius:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+  --sidebar-w:272px;
+  --ease:cubic-bezier(0.22,0.61,0.36,1);
+  --transition-fast:0.2s cubic-bezier(0.22,0.61,0.36,1);
+  --transition:0.35s cubic-bezier(0.22,0.61,0.36,1);
+  --transition-slow:0.6s cubic-bezier(0.22,0.61,0.36,1);
+  --spring-soft:cubic-bezier(0.34,1.56,0.64,1);
+  --spring-firm:cubic-bezier(0.16,0.99,0.36,1.02);
+}
+
+body{
+  font-family:'SF Pro Display','PingFang SC','Microsoft YaHei',-apple-system,sans-serif;
+  font-size:15px;line-height:1.7;color:var(--text-primary);
+  background:var(--bg);display:flex;height:100vh;height:100dvh;overflow:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  letter-spacing:-0.01em;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+
+/* ---- Light Theme Overrides ---- */
+[data-theme="light"]{
+  --bg:#fff;
+  --surface:rgba(0,0,0,0.02);
+  --surface-hover:rgba(0,0,0,0.04);
+  --glass:rgba(255,255,255,0.6);
+  --glass-border:rgba(0,0,0,0.08);
+  --glass-hover:rgba(0,0,0,0.06);
+  --text-primary:rgba(0,0,0,0.88);
+  --text-secondary:rgba(0,0,0,0.52);
+  --text-tertiary:rgba(0,0,0,0.28);
+  --accent:rgba(0,0,0,0.88);
+  --accent-dim:rgba(0,0,0,0.08);
+  --pcb-img-bg:rgba(0,0,0,0.04);
+}
+[data-theme="light"] .noise{opacity:0.018}
+[data-theme="light"] .spotlight{background:radial-gradient(circle,rgba(0,0,0,0.02) 0%,transparent 70%)}
+[data-theme="light"] .sidebar{background:rgba(255,255,255,0.5);border-right-color:rgba(0,0,0,0.06)}
+[data-theme="light"] .sidebar-header{background:rgba(255,255,255,0.5)}
+[data-theme="light"] .sidebar-footer{background:rgba(255,255,255,0.5)}
+[data-theme="light"] .theme-btn{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1)}
+[data-theme="light"] .theme-btn:hover{color:rgba(0,0,0,0.8);border-color:rgba(0,0,0,0.2)}
+[data-theme="light"] .contact-card{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.06)}
+[data-theme="light"] .contact-card:hover{background:rgba(0,0,0,0.04);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
+[data-theme="light"] .pcb-card{background:rgba(255,255,255,0.55);border-color:rgba(0,0,0,0.08);box-shadow:0 16px 44px rgba(0,0,0,0.08)}
+[data-theme="light"] .pcb-card:hover{border-color:rgba(0,0,0,0.18)}
+[data-theme="light"] .doc-line{background:linear-gradient(90deg,transparent,rgba(0,0,0,0.12),transparent)}
+[data-theme="light"] .btn{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);color:rgba(0,0,0,0.85)}
+[data-theme="light"] .btn:hover{background:rgba(0,0,0,0.05)}
+[data-theme="light"] .menu-btn{background:rgba(255,255,255,0.7);border-color:rgba(0,0,0,0.1)}
+
+/* ---- Canvas Background ---- */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ---- Noise Overlay ---- */
+.noise{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.012;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px 256px;
+}
+
+/* ---- Spotlight ---- */
+.spotlight{
+  position:fixed;pointer-events:none;z-index:2;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.025) 0%,transparent 70%);
+  transform:translate(-50%,-50%);opacity:0;
+  transition:opacity 0.4s;
+}
+
+/* ---- Sidebar ---- */
+.sidebar{
+  width:var(--sidebar-w);height:100vh;
+  background:rgba(255,255,255,0.02);
+  border-right:1px solid rgba(255,255,255,0.05);
+  display:flex;flex-direction:column;flex-shrink:0;
+  overflow-y:auto;z-index:10;position:relative;
+  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  -webkit-transform:translateZ(0);transform:translateZ(0);
+}
+
+.sidebar-header{
+  padding:1.5rem 1.25rem 0.75rem;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  position:sticky;top:0;z-index:5;
+  background:rgba(0,0,0,0.4);backdrop-filter:blur(40px);
+}
+.sidebar-header h1{
+  font-size:1rem;font-weight:600;margin-bottom:0.15rem;
+  color:var(--text-primary);letter-spacing:-0.02em;
+}
+.sidebar-sub{
+  font-size:0.7rem;color:var(--text-tertiary);letter-spacing:0.08em;
+  margin-bottom:0.5rem;text-transform:uppercase;
+}
+
+.sidebar-nav{padding:0.75rem 0;flex:1;overflow-y:auto}
+.nav-section{padding:0 1.25rem;margin-bottom:0.25rem}
+.nav-section-title{
+  font-size:0.68rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--text-tertiary);padding:0.6rem 0 0.35rem;
+}
+.nav-item{
+  display:flex;align-items:center;gap:0.55rem;
+  padding:0.42rem 0.75rem;font-size:0.85rem;
+  color:var(--text-secondary);border-radius:var(--radius-sm);
+  cursor:pointer;transition:all var(--transition-fast);text-decoration:none;
+  position:relative;
+}
+.nav-item:hover{background:var(--surface-hover);color:var(--text-primary)}
+.nav-item.active{background:rgba(255,255,255,0.06);color:var(--text-primary);font-weight:500}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:var(--text-tertiary);flex-shrink:0;transition:all var(--transition-fast)}
+.nav-item.active .nav-dot{background:var(--text-primary)}
+
+.nav-group-title{
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:0.85rem;font-weight:600;color:var(--text-primary);
+  border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:0.5rem;
+  padding:0.55rem 0.75rem;
+  cursor:pointer;user-select:none;-webkit-user-select:none;
+  transition:background var(--transition-fast);
+}
+.nav-group-title:hover{background:var(--surface-hover)}
+.nav-group-dot{width:6px;height:6px;border-radius:50%;background:var(--text-secondary);flex-shrink:0}
+.nav-chevron{
+  width:13px;height:13px;margin-left:auto;flex-shrink:0;
+  color:var(--text-tertiary);
+  transition:transform 0.3s var(--ease);
+}
+.nav-section.collapsed .nav-chevron{transform:rotate(-90deg)}
+.nav-items{overflow:hidden;max-height:420px;transition:max-height 0.4s var(--ease),opacity 0.3s ease}
+.nav-section.collapsed .nav-items{max-height:0;opacity:0}
+.nav-section.collapsed .nav-group-title{margin-bottom:0}
+
+.sidebar-footer{
+  padding:0.75rem 1.25rem;border-top:1px solid rgba(255,255,255,0.04);
+  display:flex;align-items:center;gap:0.7rem;
+  position:sticky;bottom:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(40px);
+}
+.theme-btn{
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);
+  background:rgba(255,255,255,0.03);cursor:pointer;color:var(--text-secondary);
+  transition:all var(--transition-fast);
+}
+.theme-btn:hover{color:var(--text-primary);border-color:rgba(255,255,255,0.15)}
+
+/* ---- Main ---- */
+.main{flex:1;overflow-y:auto;display:flex;justify-content:center;position:relative;z-index:3;-webkit-overflow-scrolling:touch;overscroll-behavior:none}
+
+/* ---- Content (contact) ---- */
+.content{
+  max-width:760px;width:100%;
+  padding:3rem 2.5rem 5rem;min-height:100vh;
+}
+
+/* ---- Contact Section (unchanged from original) ---- */
+.contact-section{padding:2rem 0 4rem}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.5rem}
+.contact-card{
+  background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--radius);padding:1.5rem;text-align:center;
+  transition:all 0.45s cubic-bezier(0.22,0.61,0.36,1);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:80px;position:relative;overflow:hidden;
+}
+.contact-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.12);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.contact-card .contact-name{font-size:1.05rem;font-weight:600;color:var(--text-primary);transition:all 0.35s ease}
+.contact-card .contact-detail{max-height:0;opacity:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.22,0.61,0.36,1),opacity 0.4s ease 0.1s,margin-top 0.4s ease;margin-top:0}
+.contact-card:hover .contact-detail,.contact-card.tapped .contact-detail{max-height:80px;opacity:1;margin-top:0.5rem}
+.contact-card .cd-item{font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.2rem}
+.contact-card .cd-item .cd-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-tertiary);margin-right:0.35rem}
+.contact-card .cd-phone{font-family:'SF Mono','JetBrains Mono',monospace;letter-spacing:0.03em}
+
+.tutorial-title{font-size:1.65rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:-0.03em;color:var(--text-primary)}
+
+/* ---- Button ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.55rem 1.25rem;font-size:0.85rem;font-weight:500;font-family:inherit;
+  border-radius:9999px;cursor:pointer;transition:all var(--transition);
+  text-decoration:none;border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);color:var(--text-primary);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.14);transform:translateY(-1px)}
+.btn:active{transform:scale(0.97);transition:transform 0.12s var(--spring-firm)}
+
+/* ---- Page (project views) ---- */
+.page{max-width:1080px;width:100%;margin:0 auto;padding:2.5rem 2.5rem 5rem;overflow-x:clip}
+
+.page-head{text-align:center;padding:1.25rem 1rem 2.25rem}
+.page-title{font-size:1.9rem;font-weight:700;letter-spacing:-0.03em;color:var(--text-primary)}
+.proj-title{margin-top:1.1rem;font-size:1.02rem;font-weight:500;color:var(--text-primary);letter-spacing:-0.01em}
+.proj-sub{margin-top:0.4rem;font-size:0.74rem;color:var(--text-tertiary);letter-spacing:0.14em;text-transform:uppercase}
+.page-hint{margin-top:1rem;font-size:0.78rem;color:var(--text-tertiary)}
+
+/* ---- Stage & Glass PCB Cards ---- */
+.stage{margin:0 auto;position:relative}
+
+.pcb-card{
+  position:relative;border-radius:var(--radius-lg);
+  background:var(--glass);border:1px solid var(--glass-border);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  padding:0.9rem;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  transition:transform 0.55s var(--ease),opacity 0.4s ease,border-color 0.3s ease,box-shadow 0.4s ease;
+  cursor:pointer;
+}
+.pcb-card:hover{border-color:rgba(255,255,255,0.16)}
+.pcb-card img{
+  width:100%;height:auto;object-fit:contain;display:block;
+  border-radius:14px;background:var(--pcb-img-bg);
+  -webkit-user-drag:none;user-select:none;-webkit-user-select:none;
+  opacity:0;transition:opacity 0.4s ease;
+}
+.pcb-card img.loaded{opacity:1}
+.pcb-card figcaption{
+  font-size:0.76rem;color:var(--text-tertiary);text-align:center;
+  padding:0.55rem 0.25rem 0.1rem;letter-spacing:0.04em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* ================= Overview Stage ================= */
+.ov-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);
+  grid-template-rows:auto auto;
+  align-items:center;
+  gap:1.75rem 1rem;
+}
+.ov-3d{grid-column:1/4;grid-row:1;justify-self:center;width:min(400px,80%)}
+.ov-top{grid-column:1;grid-row:2;justify-self:end;width:min(300px,92%);z-index:1}
+.ov-detail-top{grid-column:2;grid-row:2;justify-self:start;width:min(420px,100%);z-index:2}
+.ov-bottom{grid-column:3;grid-row:2;justify-self:start;width:min(300px,92%);z-index:1}
+.ov-detail-bottom{grid-column:2;grid-row:2;justify-self:end;width:min(420px,100%);z-index:2}
+
+/* pair: hidden → shown (expand downward from 3D) */
+.ov-top,.ov-bottom{
+  opacity:0;transform:translateY(-28px) scale(0.9);pointer-events:none;
+}
+.ov-stage:is(.s-3d,.s-top,.s-bottom) .ov-top,
+.ov-stage:is(.s-3d,.s-top,.s-bottom) .ov-bottom{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+}
+/* 3D: shrink + fade once pair is out, but stay */
+.ov-stage:is(.s-3d,.s-top,.s-bottom) .ov-3d{
+  transform:scale(0.78) translateY(-14px);opacity:0.42;
+}
+/* top detail: expands out of Top's right side */
+.ov-detail-top{opacity:0;transform:translateX(-70px) scale(0.88);pointer-events:none}
+.ov-stage.s-top .ov-detail-top{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
+/* bottom detail: expands out of Bottom's left side */
+.ov-detail-bottom{opacity:0;transform:translateX(70px) scale(0.88);pointer-events:none}
+.ov-stage.s-bottom .ov-detail-bottom{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
+/* deep state: subject stays strong, others recede */
+.ov-stage.s-top .ov-bottom,.ov-stage.s-bottom .ov-top{opacity:0.35;transform:scale(0.85)}
+.ov-stage.s-top .ov-top,.ov-stage.s-bottom .ov-bottom{transform:scale(1.02)}
+
+/* ================= Routing Stage ================= */
+.rt-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);
+  grid-template-rows:auto auto auto;
+  align-items:center;
+  gap:1.75rem 1rem;
+}
+.rt-overall{grid-column:1/4;grid-row:1;justify-self:center;width:min(520px,85%);z-index:1}
+.rt-mcu{grid-column:1;grid-row:2;justify-self:end;width:min(280px,92%);z-index:1}
+.rt-bq{grid-column:2;grid-row:2;justify-self:center;width:min(300px,92%);z-index:1}
+.rt-usb{grid-column:3;grid-row:2;justify-self:start;width:min(280px,92%);z-index:1}
+/* details live in row 3 (below the trio) — never cover the triggers */
+/* mcu detail: starts at MCU's right edge, expands rightward */
+.rt-detail-mcu{grid-column:1/3;grid-row:3;justify-self:end;width:430px;z-index:2}
+/* usb detail: starts at USB's left edge, expands leftward */
+.rt-detail-usb{grid-column:2/4;grid-row:3;justify-self:start;width:430px;z-index:2}
+.rt-detail-bq{grid-column:2;grid-row:3;justify-self:center;width:min(430px,100%);z-index:2}
+
+/* locals: hidden → shown (expand downward from 整体布线) */
+.rt-mcu,.rt-bq,.rt-usb{
+  opacity:0;transform:translateY(-28px) scale(0.9);pointer-events:none;
+}
+.rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-mcu,
+.rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-bq,
+.rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-usb{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+}
+/* overall: shrink + fade, stays */
+.rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-overall{
+  transform:scale(0.8) translateY(-12px);opacity:0.42;
+}
+/* details: row 3 collapses when hidden, then expand with directional push-out */
+.rt-detail-mcu,.rt-detail-usb,.rt-detail-bq{
+  max-height:0;opacity:0;overflow:hidden;
+  padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;pointer-events:none;
+  transition:max-height 0.55s var(--ease),transform 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease;
+}
+/* mcu detail: expands out of MCU's right side */
+.rt-detail-mcu{transform:translateX(-70px) scale(0.88)}
+.rt-stage.s-mcu .rt-detail-mcu{max-height:760px;opacity:1;transform:translateX(0) scale(1);padding:0.9rem;border-width:1px;box-shadow:0 20px 60px rgba(0,0,0,0.35);pointer-events:auto}
+/* usb detail: expands out of USB's left side */
+.rt-detail-usb{transform:translateX(70px) scale(0.88)}
+.rt-stage.s-usb .rt-detail-usb{max-height:760px;opacity:1;transform:translateX(0) scale(1);padding:0.9rem;border-width:1px;box-shadow:0 20px 60px rgba(0,0,0,0.35);pointer-events:auto}
+/* bq detail: pushes out downward */
+.rt-detail-bq{transform:translateY(-70px) scale(0.88)}
+.rt-stage.s-bq .rt-detail-bq{max-height:760px;opacity:1;transform:translateY(0) scale(1);padding:0.9rem;border-width:1px;box-shadow:0 20px 60px rgba(0,0,0,0.35);pointer-events:auto}
+/* deep state: subject stays strong, others recede */
+.rt-stage.s-mcu .rt-bq,.rt-stage.s-mcu .rt-usb,
+.rt-stage.s-bq .rt-mcu,.rt-stage.s-bq .rt-usb,
+.rt-stage.s-usb .rt-mcu,.rt-stage.s-usb .rt-bq{opacity:0.35;transform:scale(0.85)}
+.rt-stage.s-mcu .rt-mcu,.rt-stage.s-bq .rt-bq,.rt-stage.s-usb .rt-usb{transform:scale(1.02)}
+
+/* ---- Engineering Documentation Footer ---- */
+.doc-footer{max-width:560px;margin:2.5rem auto 0;text-align:center;padding:0 1rem}
+.doc-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.14),transparent);margin-bottom:1.6rem}
+.doc-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:0.9rem}
+
+/* ================= Door Project: Overview ================= */
+.bo-main{width:min(560px,92%);margin:0 auto}
+.intro-text{max-width:640px;margin:2rem auto 0;font-size:0.88rem;color:var(--text-secondary);line-height:1.85;text-align:center}
+.tag-row{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:1.5rem}
+.tag-chip{
+  padding:0.3rem 0.85rem;font-size:0.76rem;font-weight:500;border-radius:9999px;
+  background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--glass-border);
+}
+[data-theme="light"] .tag-chip{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);color:rgba(0,0,0,0.6)}
+
+/* ---- Signal / Power Chain ---- */
+.chain-wrap{max-width:560px;margin:2.25rem auto 0}
+.chain-title{font-size:0.85rem;font-weight:600;color:var(--text-primary);text-align:center;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.chain-card{
+  padding:1.75rem 1.5rem;text-align:center;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+[data-theme="light"] .chain-card{background:rgba(255,255,255,0.55);border-color:rgba(0,0,0,0.08);box-shadow:0 16px 44px rgba(0,0,0,0.08)}
+.chain{display:flex;flex-direction:column;align-items:center}
+.chain-node{
+  font-size:0.85rem;font-weight:500;color:var(--text-primary);
+  padding:0.5rem 1.15rem;border-radius:9999px;
+  background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);
+}
+[data-theme="light"] .chain-node{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08)}
+.chain-link{width:1px;height:1.35rem;background:rgba(255,255,255,0.16);position:relative;margin:0.15rem 0}
+.chain-link span{
+  position:absolute;left:calc(100% + 0.6rem);top:50%;transform:translateY(-50%);
+  font-size:0.64rem;color:var(--text-tertiary);letter-spacing:0.08em;white-space:nowrap;
+  font-family:'SF Mono','JetBrains Mono',Consolas,monospace;
+}
+.chain-note{margin-top:1.15rem;font-size:0.82rem;color:var(--text-secondary);line-height:1.75}
+
+/* ================= Door Project: 全局浏览 (trio + right/left/down details) ================= */
+.dl-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);
+  grid-template-rows:auto auto auto;
+  align-items:center;
+  gap:1.75rem 1rem;
+}
+.dl-main{grid-column:1/4;grid-row:1;justify-self:center;width:min(520px,85%);z-index:1}
+.dl-pcbt{grid-column:1;grid-row:2;justify-self:end;width:min(280px,92%);z-index:1}
+.dl-p3d{grid-column:2;grid-row:2;justify-self:center;width:min(300px,92%);z-index:1}
+.dl-pcbb{grid-column:3;grid-row:2;justify-self:start;width:min(280px,92%);z-index:1}
+/* details in row 3 — never cover the triggers */
+.dl-dtop{grid-column:1/3;grid-row:3;justify-self:end;width:430px;z-index:2}
+.dl-dlayout{grid-column:2;grid-row:3;justify-self:center;width:min(430px,100%);z-index:2}
+.dl-dbot{grid-column:2/4;grid-row:3;justify-self:start;width:430px;z-index:2}
+
+.dl-pcbt,.dl-p3d,.dl-pcbb{
+  opacity:0;transform:translateY(-28px) scale(0.9);pointer-events:none;
+}
+.dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-pcbt,
+.dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-p3d,
+.dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-pcbb{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+}
+.dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-main{
+  transform:scale(0.8) translateY(-12px);opacity:0.42;
+}
+.dl-dtop,.dl-dlayout,.dl-dbot{
+  max-height:0;opacity:0;overflow:hidden;
+  padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;pointer-events:none;
+  transition:max-height 0.55s var(--ease),transform 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease;
+}
+.dl-dtop{transform:translateX(-70px) scale(0.88)}
+.dl-stage.s-pcbt .dl-dtop{max-height:760px;opacity:1;transform:translateX(0) scale(1);padding:0.9rem;border-width:1px;box-shadow:0 20px 60px rgba(0,0,0,0.35);pointer-events:auto}
+.dl-dlayout{transform:translateY(-70px) scale(0.88)}
+.dl-stage.s-p3d .dl-dlayout{max-height:760px;opacity:1;transform:translateY(0) scale(1);padding:0.9rem;border-width:1px;box-shadow:0 20px 60px rgba(0,0,0,0.35);pointer-events:auto}
+.dl-dbot{transform:translateX(70px) scale(0.88)}
+.dl-stage.s-pcbb .dl-dbot{max-height:760px;opacity:1;transform:translateX(0) scale(1);padding:0.9rem;border-width:1px;box-shadow:0 20px 60px rgba(0,0,0,0.35);pointer-events:auto}
+.dl-stage.s-pcbt .dl-p3d,.dl-stage.s-pcbt .dl-pcbb,
+.dl-stage.s-p3d .dl-pcbt,.dl-stage.s-p3d .dl-pcbb,
+.dl-stage.s-pcbb .dl-pcbt,.dl-stage.s-pcbb .dl-p3d{opacity:0.35;transform:scale(0.85)}
+.dl-stage.s-pcbt .dl-pcbt,.dl-stage.s-p3d .dl-p3d,.dl-stage.s-pcbb .dl-pcbb{transform:scale(1.02)}
+
+/* ================= Door Project: 电源架构 (main + pair + shared path detail) ================= */
+.pw-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);
+  grid-template-rows:auto auto;
+  align-items:center;
+  gap:1.75rem 1rem;
+}
+.pw-main{grid-column:1/4;grid-row:1;justify-self:center;width:min(560px,88%)}
+.pw-bq{grid-column:1;grid-row:2;justify-self:end;width:min(300px,92%);z-index:1}
+.pw-dcdc{grid-column:3;grid-row:2;justify-self:start;width:min(300px,92%);z-index:1}
+.pw-path{grid-column:2;grid-row:2;justify-self:center;width:min(430px,100%);z-index:2}
+
+.pw-bq,.pw-dcdc{
+  opacity:0;transform:translateY(-28px) scale(0.9);pointer-events:none;
+}
+.pw-stage:is(.s-main,.s-bq,.s-dcdc) .pw-bq,
+.pw-stage:is(.s-main,.s-bq,.s-dcdc) .pw-dcdc{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+}
+.pw-stage:is(.s-main,.s-bq,.s-dcdc) .pw-main{
+  transform:scale(0.82) translateY(-12px);opacity:0.42;
+}
+.pw-path{opacity:0;transform:translateY(-28px) scale(0.88);pointer-events:none}
+.pw-stage.s-bq .pw-path,.pw-stage.s-dcdc .pw-path{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.pw-stage.s-bq .pw-dcdc,.pw-stage.s-dcdc .pw-bq{opacity:0.35;transform:scale(0.85)}
+.pw-stage.s-bq .pw-bq,.pw-stage.s-dcdc .pw-dcdc{transform:scale(1.02)}
+
+/* ================= Door Project: 核心硬件设计 / USB 接口设计 (main + pair) ================= */
+.co-stage,.ub-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows:auto auto;
+  align-items:center;
+  gap:1.75rem 1.5rem;
+}
+.co-main,.ub-main{grid-column:1/3;grid-row:1;justify-self:center;width:min(480px,90%);z-index:1}
+.co-sch{grid-column:1;grid-row:2;justify-self:end;width:min(300px,92%);z-index:1}
+.co-boot{grid-column:2;grid-row:2;justify-self:start;width:min(300px,92%);z-index:1}
+.ub-esd{grid-column:1;grid-row:2;justify-self:end;width:min(300px,92%);z-index:1}
+.ub-diff{grid-column:2;grid-row:2;justify-self:start;width:min(300px,92%);z-index:1}
+
+.co-sch,.co-boot,.ub-esd,.ub-diff{
+  opacity:0;transform:translateY(-28px) scale(0.9);pointer-events:none;
+}
+.co-stage.s-main .co-sch,.co-stage.s-main .co-boot,
+.ub-stage.s-main .ub-esd,.ub-stage.s-main .ub-diff{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+}
+.co-stage.s-main .co-main,.ub-stage.s-main .ub-main{
+  transform:scale(0.82) translateY(-12px);opacity:0.42;
+}
+
+/* ================= Door Project: 工程资料 ================= */
+.docs-grid{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-top:1.75rem}
+.docs-card{
+  min-width:220px;text-align:center;
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius);padding:1.5rem 1.25rem;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  transition:transform var(--transition),border-color var(--transition-fast);
+}
+.docs-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.16)}
+[data-theme="light"] .docs-card{background:rgba(255,255,255,0.55);border-color:rgba(0,0,0,0.08)}
+[data-theme="light"] .docs-card:hover{border-color:rgba(0,0,0,0.18)}
+.docs-name{font-size:0.88rem;font-weight:500;color:var(--text-primary);margin-bottom:0.9rem}
+.docs-size{font-size:0.72rem;color:var(--text-tertiary);margin-bottom:0.9rem;font-family:'SF Mono','JetBrains Mono',Consolas,monospace}
+
+/* ---- Lightbox ---- */
+.lightbox-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.94);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.35s}
+.lightbox-overlay.open{opacity:1;pointer-events:auto}
+.lightbox-overlay img{max-width:92vw;max-height:90vh;border-radius:var(--radius)}
+
+/* ---- Responsive: sidebar drawer ---- */
+@media(max-width:768px){
+  .sidebar{position:fixed;transform:translateX(-100%);-webkit-transform:translateX(-100%);transition:transform 0.3s ease;width:var(--sidebar-w);left:0;top:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .sidebar.open{transform:translateX(0);-webkit-transform:translateX(0)}
+  .sidebar-header,.sidebar-footer{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .content{padding:2.5rem 1rem 4rem}
+  .contact-grid{grid-template-columns:1fr}
+  body{overflow:hidden}
+  .main{overflow-y:auto;-webkit-overflow-scrolling:touch}
+}
+.menu-btn{display:none;position:fixed;top:0.75rem;left:0.75rem;z-index:200;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);background:rgba(0,0,0,0.85);cursor:pointer;color:var(--text-secondary)}
+@media(max-width:768px){.menu-btn{display:flex}}
+
+/* ---- Responsive: stacked stage for tablet/mobile (tap interaction) ---- */
+@media(max-width:920px){
+  .page{padding:2rem 1.25rem 4rem}
+  .page-title{font-size:1.5rem}
+
+  .ov-stage,.rt-stage{display:flex;flex-direction:column;align-items:center;gap:0}
+  .pcb-card{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(255,255,255,0.05)}
+
+  .ov-stage .ov-3d{order:1;width:min(400px,100%)}
+  .ov-stage .ov-top{order:2;width:min(340px,88%)}
+  .ov-stage .ov-detail-top{order:3;width:min(420px,94%)}
+  .ov-stage .ov-bottom{order:4;width:min(340px,88%)}
+  .ov-stage .ov-detail-bottom{order:5;width:min(420px,94%)}
+
+  .rt-stage .rt-overall{order:1;width:min(520px,100%)}
+  .rt-stage .rt-mcu{order:2;width:min(300px,84%)}
+  .rt-stage .rt-detail-mcu{order:3;width:min(420px,94%)}
+  .rt-stage .rt-bq{order:4;width:min(300px,84%)}
+  .rt-stage .rt-detail-bq{order:5;width:min(420px,94%)}
+  .rt-stage .rt-usb{order:6;width:min(300px,84%)}
+  .rt-stage .rt-detail-usb{order:7;width:min(420px,94%)}
+
+  /* collapsed by default; expand via tap state */
+  .ov-top,.ov-bottom{
+    max-height:0;margin:0;padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;
+    transform:none;
+    transition:max-height 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease,box-shadow 0.4s ease;
+  }
+  .ov-stage:is(.s-3d,.s-top,.s-bottom) .ov-top,
+  .ov-stage:is(.s-3d,.s-top,.s-bottom) .ov-bottom{
+    max-height:640px;margin:0 0 1rem;padding:0.8rem;border-width:1px;
+    opacity:1;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .ov-detail-top,.ov-detail-bottom{
+    max-height:0;margin:0;padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;
+    transform:none;
+    transition:max-height 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease,box-shadow 0.4s ease;
+  }
+  .ov-stage.s-top .ov-detail-top,.ov-stage.s-bottom .ov-detail-bottom{
+    max-height:780px;margin:0 0 1rem;padding:0.8rem;border-width:1px;
+    opacity:1;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .ov-stage:is(.s-3d,.s-top,.s-bottom) .ov-3d{transform:scale(0.92) translateY(-6px);opacity:0.5}
+  .ov-stage.s-top .ov-bottom,.ov-stage.s-bottom .ov-top{opacity:0.35}
+  .ov-stage.s-top .ov-top,.ov-stage.s-bottom .ov-bottom{transform:scale(1.02)}
+
+  .rt-mcu,.rt-bq,.rt-usb{
+    max-height:0;margin:0;padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;
+    transform:none;
+    transition:max-height 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease,box-shadow 0.4s ease;
+  }
+  .rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-mcu,
+  .rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-bq,
+  .rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-usb{
+    max-height:560px;margin:0 0 1rem;padding:0.8rem;border-width:1px;
+    opacity:1;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .rt-detail-mcu,.rt-detail-usb{
+    transform:translateY(-20px);
+  }
+  .rt-stage.s-mcu .rt-detail-mcu,.rt-stage.s-usb .rt-detail-usb{
+    margin:0 0 1rem;padding:0.8rem;
+    transform:translateY(0);
+  }
+  .rt-stage.s-bq .rt-detail-bq{margin:0 0 1rem}
+  .rt-stage:is(.s-overall,.s-mcu,.s-bq,.s-usb) .rt-overall{transform:scale(0.92) translateY(-6px);opacity:0.5}
+  .rt-stage.s-mcu .rt-bq,.rt-stage.s-mcu .rt-usb,
+  .rt-stage.s-bq .rt-mcu,.rt-stage.s-bq .rt-usb,
+  .rt-stage.s-usb .rt-mcu,.rt-stage.s-usb .rt-bq{opacity:0.35}
+  .rt-stage.s-mcu .rt-mcu,.rt-stage.s-bq .rt-bq,.rt-stage.s-usb .rt-usb{transform:scale(1.02)}
+
+  /* --- Door stages: stacked, tap interaction --- */
+  .dl-stage,.pw-stage,.co-stage,.ub-stage{display:flex;flex-direction:column;align-items:center;gap:0}
+  .dl-stage .dl-main{order:1;width:min(520px,100%)}
+  .dl-stage .dl-pcbt{order:2;width:min(300px,84%)}
+  .dl-stage .dl-dtop{order:3;width:min(420px,94%)}
+  .dl-stage .dl-p3d{order:4;width:min(300px,84%)}
+  .dl-stage .dl-dlayout{order:5;width:min(420px,94%)}
+  .dl-stage .dl-pcbb{order:6;width:min(300px,84%)}
+  .dl-stage .dl-dbot{order:7;width:min(420px,94%)}
+  .pw-stage .pw-main{order:1;width:min(560px,100%)}
+  .pw-stage .pw-bq{order:2;width:min(300px,84%)}
+  .pw-stage .pw-dcdc{order:3;width:min(300px,84%)}
+  .pw-stage .pw-path{order:4;width:min(420px,94%)}
+  .co-stage .co-main,.ub-stage .ub-main{order:1;width:min(480px,100%)}
+  .co-stage .co-sch{order:2;width:min(300px,84%)}
+  .co-stage .co-boot{order:3;width:min(300px,84%)}
+  .ub-stage .ub-esd{order:2;width:min(300px,84%)}
+  .ub-stage .ub-diff{order:3;width:min(300px,84%)}
+
+  .dl-pcbt,.dl-p3d,.dl-pcbb,.pw-bq,.pw-dcdc,.co-sch,.co-boot,.ub-esd,.ub-diff{
+    max-height:0;margin:0;padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;
+    transform:none;
+    transition:max-height 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease,box-shadow 0.4s ease;
+  }
+  .dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-pcbt,
+  .dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-p3d,
+  .dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-pcbb,
+  .pw-stage:is(.s-main,.s-bq,.s-dcdc) .pw-bq,
+  .pw-stage:is(.s-main,.s-bq,.s-dcdc) .pw-dcdc,
+  .co-stage.s-main .co-sch,.co-stage.s-main .co-boot,
+  .ub-stage.s-main .ub-esd,.ub-stage.s-main .ub-diff{
+    max-height:560px;margin:0 0 1rem;padding:0.8rem;border-width:1px;
+    opacity:1;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .dl-dtop,.dl-dlayout,.dl-dbot,.pw-path{
+    max-height:0;margin:0;padding-top:0;padding-bottom:0;border-width:0;box-shadow:none;
+    transform:none;
+    transition:max-height 0.55s var(--ease),opacity 0.4s ease,padding 0.45s ease,margin 0.45s ease,box-shadow 0.4s ease;
+  }
+  .dl-stage.s-pcbt .dl-dtop,.dl-stage.s-p3d .dl-dlayout,.dl-stage.s-pcbb .dl-dbot,
+  .pw-stage.s-bq .pw-path,.pw-stage.s-dcdc .pw-path{
+    max-height:760px;margin:0 0 1rem;padding:0.8rem;border-width:1px;
+    opacity:1;box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .dl-stage:is(.s-main,.s-pcbt,.s-p3d,.s-pcbb) .dl-main{transform:scale(0.92) translateY(-6px);opacity:0.5}
+  .pw-stage:is(.s-main,.s-bq,.s-dcdc) .pw-main{transform:scale(0.92) translateY(-6px);opacity:0.5}
+  .co-stage.s-main .co-main,.ub-stage.s-main .ub-main{transform:scale(0.92) translateY(-6px);opacity:0.5}
+  .dl-stage.s-pcbt .dl-p3d,.dl-stage.s-pcbt .dl-pcbb,
+  .dl-stage.s-p3d .dl-pcbt,.dl-stage.s-p3d .dl-pcbb,
+  .dl-stage.s-pcbb .dl-pcbt,.dl-stage.s-pcbb .dl-p3d{opacity:0.35}
+  .pw-stage.s-bq .pw-dcdc,.pw-stage.s-dcdc .pw-bq{opacity:0.35}
+  .dl-stage.s-pcbt .dl-pcbt,.dl-stage.s-p3d .dl-p3d,.dl-stage.s-pcbb .dl-pcbb{transform:scale(1.02)}
+  .pw-stage.s-bq .pw-bq,.pw-stage.s-dcdc .pw-dcdc{transform:scale(1.02)}
+}
+
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- Background Layers -->
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+<div class="spotlight" id="spotlight"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1>作品集</h1>
+    <p class="sidebar-sub">Engineering Portfolio</p>
+  </div>
+  <nav class="sidebar-nav" id="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-group-title" tabindex="0" role="button" aria-expanded="true">
+        <span class="nav-group-dot"></span>出入门提醒系统
+        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="nav-items">
+        <a class="nav-item" href="#/door/overview" data-route="door/overview"><span class="nav-dot"></span>项目概览</a>
+        <a class="nav-item" href="#/door/layout" data-route="door/layout"><span class="nav-dot"></span>全局浏览</a>
+        <a class="nav-item" href="#/door/power" data-route="door/power"><span class="nav-dot"></span>电源架构</a>
+        <a class="nav-item" href="#/door/core" data-route="door/core"><span class="nav-dot"></span>核心硬件设计</a>
+        <a class="nav-item" href="#/door/usb" data-route="door/usb"><span class="nav-dot"></span>USB / 接口设计</a>
+        <a class="nav-item" href="#/door/docs" data-route="door/docs"><span class="nav-dot"></span>工程资料</a>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-group-title" tabindex="0" role="button" aria-expanded="true">
+        <span class="nav-group-dot"></span>测距仪
+        <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="nav-items">
+        <a class="nav-item" href="#/overview" data-route="overview"><span class="nav-dot"></span>全局浏览</a>
+        <a class="nav-item" href="#/routing" data-route="routing"><span class="nav-dot"></span>关键布线</a>
+        <a class="nav-item" href="#/rf/docs" data-route="rf/docs"><span class="nav-dot"></span>工程资料</a>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">支持</div>
+      <a class="nav-item" href="#/contact" data-route="contact"><span class="nav-dot"></span>联系我们</a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="theme-btn" id="theme-btn" title="模式切换">
+      <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+    </button>
+    <span style="font-size:0.78rem;color:var(--text-tertiary)">深色</span>
+  </div>
+</aside>
+
+<div id="overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:5;pointer-events:none" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none';this.style.pointerEvents='none'"></div>
+<button class="menu-btn" id="menu-btn" aria-label="菜单" onclick="var s=document.getElementById('sidebar');var o=document.getElementById('overlay');var open=s.classList.toggle('open');o.style.display=open?'block':'none';o.style.pointerEvents=open?'auto':'none'">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+
+<main class="main" id="main">
+
+  <!-- Contact page (content unchanged from original) -->
+  <div class="content hidden" id="content"></div>
+
+  <!-- 全局浏览 -->
+  <div class="page hidden" id="page-overview">
+    <header class="page-head">
+      <h1 class="page-title">全局浏览</h1>
+      <p class="proj-title">ESP32-C3 Laser Rangefinder</p>
+      <p class="proj-sub">Hardware Design / PCB / Power Management</p>
+      <p class="page-hint">悬停或点击图片 · 逐层展开设计细节</p>
+    </header>
+
+    <div class="stage ov-stage" id="ov-stage">
+      <figure class="pcb-card ov-3d" data-tr="3d" tabindex="0" role="button" aria-expanded="false" aria-label="PCB 3D 整体">
+        <img src="assets/rangefinder/PCB3D%E6%95%B4%E4%BD%93.png" alt="PCB 3D 整体" decoding="async">
+        <figcaption>PCB 3D 整体</figcaption>
+      </figure>
+      <figure class="pcb-card ov-top" data-tr="top" tabindex="0" role="button" aria-expanded="false" aria-label="PCB Top">
+        <img data-src="assets/rangefinder/PCB%20Top.png" alt="PCB Top" decoding="async" data-reveal="s-3d">
+        <figcaption>PCB Top</figcaption>
+      </figure>
+      <figure class="pcb-card ov-detail-top" aria-label="顶层全局浏览">
+        <img data-src="assets/rangefinder/%E9%A1%B6%E5%B1%82%E5%85%A8%E5%B1%80%E6%B5%8F%E8%A7%88.png" alt="顶层全局浏览" decoding="async" data-reveal="s-top">
+        <figcaption>顶层全局浏览</figcaption>
+      </figure>
+      <figure class="pcb-card ov-bottom" data-tr="bottom" tabindex="0" role="button" aria-expanded="false" aria-label="PCB Bottom">
+        <img data-src="assets/rangefinder/PCB%20Bottom.png" alt="PCB Bottom" decoding="async" data-reveal="s-3d">
+        <figcaption>PCB Bottom</figcaption>
+      </figure>
+      <figure class="pcb-card ov-detail-bottom" aria-label="底层全局浏览">
+        <img data-src="assets/rangefinder/%E5%BA%95%E5%B1%82%E5%85%A8%E5%B1%80%E6%B5%8F%E8%A7%88.png" alt="底层全局浏览" decoding="async" data-reveal="s-bottom">
+        <figcaption>底层全局浏览</figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+  <!-- 关键布线 -->
+  <div class="page hidden" id="page-routing">
+    <header class="page-head">
+      <h1 class="page-title">关键布线</h1>
+      <p class="proj-title">ESP32-C3 Laser Rangefinder</p>
+      <p class="proj-sub">Hardware Design / PCB / Power Management</p>
+      <p class="page-hint">悬停或点击图片 · 逐层展开设计细节</p>
+    </header>
+
+    <div class="stage rt-stage" id="rt-stage">
+      <figure class="pcb-card rt-overall" data-tr="overall" tabindex="0" role="button" aria-expanded="false" aria-label="整体布线">
+        <img data-src="assets/rangefinder/%E6%95%B4%E4%BD%93%E5%B8%83%E7%BA%BF.png" alt="整体布线" decoding="async" data-reveal="base">
+        <figcaption>整体布线</figcaption>
+      </figure>
+      <figure class="pcb-card rt-mcu" data-tr="mcu" tabindex="0" role="button" aria-expanded="false" aria-label="MCU 布线 PCB">
+        <img data-src="assets/rangefinder/MCU%E5%B8%83%E7%BA%BFPCB.png" alt="MCU 布线 PCB" decoding="async" data-reveal="s-overall">
+        <figcaption>MCU 布线 PCB</figcaption>
+      </figure>
+      <figure class="pcb-card rt-detail-mcu" aria-label="ESP32 MCU 原理图部分">
+        <img data-src="assets/rangefinder/ESP32MCU%E5%8E%9F%E7%90%86%E5%9B%BE%E9%83%A8%E5%88%86.png" alt="ESP32 MCU 原理图部分" decoding="async" data-reveal="s-mcu">
+        <figcaption>ESP32 MCU 原理图部分</figcaption>
+      </figure>
+      <figure class="pcb-card rt-bq" data-tr="bq" tabindex="0" role="button" aria-expanded="false" aria-label="BQ24074 PCB 布线">
+        <img data-src="assets/rangefinder/BQ24074PCB%E5%B8%83%E7%BA%BF.png" alt="BQ24074 PCB 布线" decoding="async" data-reveal="s-overall">
+        <figcaption>BQ24074 PCB 布线</figcaption>
+      </figure>
+      <figure class="pcb-card rt-detail-bq" aria-label="BQ24074 电源原理图部分">
+        <img data-src="assets/rangefinder/BQ24074%E7%94%B5%E6%BA%90%E5%8E%9F%E7%90%86%E5%9B%BE%E9%83%A8%E5%88%86.png" alt="BQ24074 电源原理图部分" decoding="async" data-reveal="s-bq">
+        <figcaption>BQ24074 电源原理图部分</figcaption>
+      </figure>
+      <figure class="pcb-card rt-usb" data-tr="usb" tabindex="0" role="button" aria-expanded="false" aria-label="USB PCB 布线">
+        <img data-src="assets/rangefinder/USBPCB%E5%B8%83%E7%BA%BF.png" alt="USB PCB 布线" decoding="async" data-reveal="s-overall">
+        <figcaption>USB PCB 布线</figcaption>
+      </figure>
+      <figure class="pcb-card rt-detail-usb" aria-label="USB 原理图部分">
+        <img data-src="assets/rangefinder/USB%E5%8E%9F%E7%90%86%E5%9B%BE%E9%83%A8%E5%88%86.png" alt="USB 原理图部分" decoding="async" data-reveal="s-usb">
+        <figcaption>USB 原理图部分</figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+  <!-- ============ 测距仪 · 工程资料 ============ -->
+  <div class="page hidden" id="page-rf-docs">
+    <header class="page-head">
+      <h1 class="page-title">工程资料</h1>
+      <p class="proj-title">ESP32-C3 Laser Rangefinder</p>
+      <p class="proj-sub">Hardware Design / PCB / Power Management</p>
+    </header>
+
+    <div class="docs-grid">
+      <div class="docs-card">
+        <div class="docs-name">全局 PCB</div>
+        <div class="docs-size">全局PCB.pdf · 636 KB</div>
+        <a class="btn" data-href="assets/rangefinder/全局PCB.pdf" target="_blank" download>Download PDF</a>
+      </div>
+      <div class="docs-card">
+        <div class="docs-name">测距仪原理图</div>
+        <div class="docs-size">测距仪原理图.pdf · 224 KB</div>
+        <a class="btn" data-href="assets/rangefinder/测距仪原理图.pdf" target="_blank" download>Download PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 出入门提醒系统 · 项目概览 ============ -->
+  <div class="page hidden" id="page-door-overview">
+    <header class="page-head">
+      <h1 class="page-title">项目概览</h1>
+      <p class="proj-title">出入门提醒系统</p>
+      <p class="proj-sub">ESP32-C3 · I²S Audio · Power Management</p>
+    </header>
+
+    <figure class="pcb-card bo-main">
+      <img data-src="assets/door/系统框图.webp" data-full="assets/door/系统框图.png" alt="系统框图" decoding="async" data-reveal="base">
+      <figcaption>系统框图</figcaption>
+    </figure>
+
+    <p class="intro-text">基于 ESP32-C3 的智能出入门提醒系统，通过门磁与人体红外传感器检测门状态及人员活动，并结合本地语音提醒、OLED 状态显示和无线通信，实现门状态监测与提醒。</p>
+
+    <div class="tag-row">
+      <span class="tag-chip">ESP32-C3</span>
+      <span class="tag-chip">4-Layer PCB</span>
+      <span class="tag-chip">Li-ion Battery</span>
+      <span class="tag-chip">Wi-Fi</span>
+      <span class="tag-chip">I²S Audio</span>
+      <span class="tag-chip">USB Type-C</span>
+      <span class="tag-chip">OLED</span>
+      <span class="tag-chip">PCB Layout</span>
+    </div>
+
+    <div class="chain-wrap">
+      <div class="chain-title">本地音频提醒链路</div>
+      <div class="glass-card-chain chain-card">
+        <div class="chain">
+          <div class="chain-node">ESP32-C3</div>
+          <div class="chain-link"><span>I²S</span></div>
+          <div class="chain-node">MAX98357A</div>
+          <div class="chain-link"></div>
+          <div class="chain-node">扬声器</div>
+        </div>
+        <p class="chain-note">ESP32-C3 通过 I²S 输出数字音频信号，经 MAX98357A 音频功放后驱动扬声器，实现本地声音提醒。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 出入门提醒系统 · 全局浏览 ============ -->
+  <div class="page hidden" id="page-door-layout">
+    <header class="page-head">
+      <h1 class="page-title">全局浏览</h1>
+      <p class="proj-title">出入门提醒系统</p>
+      <p class="proj-sub">ESP32-C3 · I²S Audio · Power Management</p>
+      <p class="page-hint">悬停或点击图片 · 逐层展开设计细节</p>
+    </header>
+
+    <div class="stage dl-stage" id="dl-stage">
+      <figure class="pcb-card dl-main" data-tr="main" tabindex="0" role="button" aria-expanded="false" aria-label="3D 整体预览">
+        <img data-src="assets/door/3D整体预览.webp" data-full="assets/door/3D整体预览.png" alt="3D 整体预览" decoding="async" data-reveal="base">
+        <figcaption>3D 整体预览</figcaption>
+      </figure>
+      <figure class="pcb-card dl-pcbt" data-tr="pcbt" tabindex="0" role="button" aria-expanded="false" aria-label="PCB Top">
+        <img data-src="assets/door/PCB-Top.webp" data-full="assets/door/PCB-Top.png" alt="PCB Top" decoding="async" data-reveal="s-main">
+        <figcaption>PCB Top</figcaption>
+      </figure>
+      <figure class="pcb-card dl-dtop" aria-label="顶层全局浏览">
+        <img data-src="assets/door/顶层全局浏览.webp" data-full="assets/door/顶层全局浏览.png" alt="顶层全局浏览" decoding="async" data-reveal="s-pcbt">
+        <figcaption>顶层全局浏览</figcaption>
+      </figure>
+      <figure class="pcb-card dl-p3d" data-tr="p3d" tabindex="0" role="button" aria-expanded="false" aria-label="3D 预览">
+        <img data-src="assets/door/3D预览.webp" data-full="assets/door/3D预览.png" alt="3D 预览" decoding="async" data-reveal="s-main">
+        <figcaption>3D 预览</figcaption>
+      </figure>
+      <figure class="pcb-card dl-dlayout" aria-label="全局 PCB 布局">
+        <img data-src="assets/door/全局PCB布局.webp" data-full="assets/door/全局PCB布局.png" alt="全局 PCB 布局" decoding="async" data-reveal="s-p3d">
+        <figcaption>全局 PCB 布局</figcaption>
+      </figure>
+      <figure class="pcb-card dl-pcbb" data-tr="pcbb" tabindex="0" role="button" aria-expanded="false" aria-label="PCB Bottom">
+        <img data-src="assets/door/PCB-Bottom.webp" data-full="assets/door/PCB-Bottom.png" alt="PCB Bottom" decoding="async" data-reveal="s-main">
+        <figcaption>PCB Bottom</figcaption>
+      </figure>
+      <figure class="pcb-card dl-dbot" aria-label="底层全局浏览">
+        <img data-src="assets/door/底层全局浏览.webp" data-full="assets/door/底层全局浏览.png" alt="底层全局浏览" decoding="async" data-reveal="s-pcbb">
+        <figcaption>底层全局浏览</figcaption>
+      </figure>
+    </div>
+
+    <footer class="doc-footer">
+      <div class="doc-line"></div>
+      <div class="doc-label">Engineering Documentation</div>
+      <a class="btn" data-href="assets/door/全局PCB.pdf" target="_blank" download>Download Full PCB PDF</a>
+    </footer>
+  </div>
+
+  <!-- ============ 出入门提醒系统 · 电源架构 ============ -->
+  <div class="page hidden" id="page-door-power">
+    <header class="page-head">
+      <h1 class="page-title">电源架构</h1>
+      <p class="proj-title">出入门提醒系统</p>
+      <p class="proj-sub">ESP32-C3 · I²S Audio · Power Management</p>
+      <p class="page-hint">悬停或点击图片 · 逐层展开设计细节</p>
+    </header>
+
+    <div class="stage pw-stage" id="pw-stage">
+      <figure class="pcb-card pw-main" data-tr="main" tabindex="0" role="button" aria-expanded="false" aria-label="电源架构图">
+        <img data-src="assets/door/电源架构图.webp" data-full="assets/door/电源架构图.png" alt="电源架构图" decoding="async" data-reveal="base">
+        <figcaption>电源架构图</figcaption>
+      </figure>
+      <figure class="pcb-card pw-bq" data-tr="bq" tabindex="0" role="button" aria-expanded="false" aria-label="BQ24075 PCB 布局">
+        <img data-src="assets/door/BQ24075PCB布局.webp" data-full="assets/door/BQ24075PCB布局.png" alt="BQ24075 PCB 布局" decoding="async" data-reveal="s-main">
+        <figcaption>BQ24075 PCB 布局</figcaption>
+      </figure>
+      <figure class="pcb-card pw-dcdc" data-tr="dcdc" tabindex="0" role="button" aria-expanded="false" aria-label="DCDC 电源芯片 PCB 布局">
+        <img data-src="assets/door/DCDC电源芯片PCB布局.webp" data-full="assets/door/DCDC电源芯片PCB布局.png" alt="DCDC 电源芯片 PCB 布局" decoding="async" data-reveal="s-main">
+        <figcaption>DCDC 电源芯片 PCB 布局</figcaption>
+      </figure>
+      <figure class="pcb-card pw-path" aria-label="PCB 电源路径">
+        <img data-src="assets/door/PCB电源路径.webp" data-full="assets/door/PCB电源路径.png" alt="PCB 电源路径" decoding="async" data-reveal="s-bq s-dcdc">
+        <figcaption>PCB 电源路径</figcaption>
+      </figure>
+    </div>
+
+    <div class="chain-wrap">
+      <div class="chain-title">电源架构链</div>
+      <div class="glass-card-chain chain-card">
+        <div class="chain">
+          <div class="chain-node">USB Type-C</div>
+          <div class="chain-link"></div>
+          <div class="chain-node">BQ24075</div>
+          <div class="chain-link"></div>
+          <div class="chain-node">锂电池</div>
+          <div class="chain-link"></div>
+          <div class="chain-node">SY8088 DC-DC</div>
+          <div class="chain-link"></div>
+          <div class="chain-node">3.3V</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 出入门提醒系统 · 核心硬件设计 ============ -->
+  <div class="page hidden" id="page-door-core">
+    <header class="page-head">
+      <h1 class="page-title">核心硬件设计</h1>
+      <p class="proj-title">出入门提醒系统</p>
+      <p class="proj-sub">ESP32-C3 · I²S Audio · Power Management</p>
+      <p class="page-hint">悬停或点击图片 · 逐层展开设计细节</p>
+    </header>
+
+    <div class="stage co-stage" id="co-stage">
+      <figure class="pcb-card co-main" data-tr="main" tabindex="0" role="button" aria-expanded="false" aria-label="MCU 主控区域 PCB 布局">
+        <img data-src="assets/door/MCU主控区域PCB布局.webp" data-full="assets/door/MCU主控区域PCB布局.png" alt="MCU 主控区域 PCB 布局" decoding="async" data-reveal="base">
+        <figcaption>MCU 主控区域 PCB 布局</figcaption>
+      </figure>
+      <figure class="pcb-card co-sch" aria-label="MCU 主控原理图">
+        <img data-src="assets/door/MCU主控原理图.webp" data-full="assets/door/MCU主控原理图.png" alt="MCU 主控原理图" decoding="async" data-reveal="s-main">
+        <figcaption>MCU 主控原理图</figcaption>
+      </figure>
+      <figure class="pcb-card co-boot" aria-label="ESP32 启动管脚配置说明">
+        <img data-src="assets/door/ESP32启动管教配置说明.webp" data-full="assets/door/ESP32启动管教配置说明.png" alt="ESP32 启动管脚配置说明" decoding="async" data-reveal="s-main">
+        <figcaption>ESP32 启动管脚配置说明</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ============ 出入门提醒系统 · USB / 接口设计 ============ -->
+  <div class="page hidden" id="page-door-usb">
+    <header class="page-head">
+      <h1 class="page-title">USB / 接口设计</h1>
+      <p class="proj-title">出入门提醒系统</p>
+      <p class="proj-sub">ESP32-C3 · I²S Audio · Power Management</p>
+      <p class="page-hint">悬停或点击图片 · 逐层展开设计细节</p>
+    </header>
+
+    <div class="stage ub-stage" id="ub-stage">
+      <figure class="pcb-card ub-main" data-tr="main" tabindex="0" role="button" aria-expanded="false" aria-label="USB PCB 布局">
+        <img data-src="assets/door/USBPCB布局.webp" data-full="assets/door/USBPCB布局.png" alt="USB PCB 布局" decoding="async" data-reveal="base">
+        <figcaption>USB PCB 布局</figcaption>
+      </figure>
+      <figure class="pcb-card ub-esd" aria-label="USB ESD 防护 PCB 布局">
+        <img data-src="assets/door/USBESD防护PCB布局.webp" data-full="assets/door/USBESD防护PCB布局.png" alt="USB ESD 防护 PCB 布局" decoding="async" data-reveal="s-main">
+        <figcaption>USB ESD 防护 PCB 布局</figcaption>
+      </figure>
+      <figure class="pcb-card ub-diff" aria-label="USB 差分等长 PCB 布局">
+        <img data-src="assets/door/USB差分等长PCB布局.webp" data-full="assets/door/USB差分等长PCB布局.png" alt="USB 差分等长 PCB 布局" decoding="async" data-reveal="s-main">
+        <figcaption>USB 差分等长 PCB 布局</figcaption>
+      </figure>
+    </div>
+
+    <p class="intro-text">USB Type-C 同时承担供电与程序下载功能，接口区域设置 ESD 防护，并对 D+/D− 进行差分等长处理。</p>
+  </div>
+
+  <!-- ============ 出入门提醒系统 · 工程资料 ============ -->
+  <div class="page hidden" id="page-door-docs">
+    <header class="page-head">
+      <h1 class="page-title">工程资料</h1>
+      <p class="proj-title">出入门提醒系统</p>
+      <p class="proj-sub">ESP32-C3 · I²S Audio · Power Management</p>
+    </header>
+
+    <div class="docs-grid">
+      <div class="docs-card">
+        <div class="docs-name">全局 PCB</div>
+        <div class="docs-size">全局PCB.pdf · 1.1 MB</div>
+        <a class="btn" data-href="assets/door/全局PCB.pdf" target="_blank" download>Download PDF</a>
+      </div>
+      <div class="docs-card">
+        <div class="docs-name">全局原理图</div>
+        <div class="docs-size">全局原理图.pdf · 320 KB</div>
+        <a class="btn" data-href="assets/door/全局原理图.pdf" target="_blank" download>Download PDF</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('open')"><img src="" alt="" id="lightbox-img"></div>
+
+<script>
+(function(){'use strict';
+var html=document.documentElement;
+var mainEl=document.getElementById('main');
+var contentEl=document.getElementById('content');
+var hoverCapable=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* === Canvas Background: Aurora (subdued) === */
+(function initBg(){
+  var c=document.getElementById('bg-canvas'),ctx=c.getContext('2d');
+  var t=0;
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight}
+  resize();window.addEventListener('resize',resize);
+
+  function draw(){
+    t+=0.00025;
+    ctx.clearRect(0,0,c.width,c.height);
+    var m=Math.min(c.width,c.height);
+    var blobs=[
+      {x:c.width*0.25,y:c.height*0.15,r:m*0.5,hue:215,sat:14,light:52},
+      {x:c.width*0.78,y:c.height*0.72,r:m*0.45,hue:195,sat:12,light:50},
+      {x:c.width*0.5+Math.sin(t*0.4)*c.width*0.2,y:c.height*0.5+Math.cos(t*0.5)*c.height*0.15,r:m*0.55,hue:225,sat:10,light:48}
+    ];
+    blobs.forEach(function(b){
+      var g=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+      g.addColorStop(0,'hsla('+b.hue+','+b.sat+'%,'+b.light+'%,0.045)');
+      g.addColorStop(0.5,'hsla('+b.hue+','+b.sat+'%,'+b.light+'%,0.022)');
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* === Spotlight === */
+(function initSpotlight(){
+  var spot=document.getElementById('spotlight'),raf;
+  document.addEventListener('mousemove',function(e){
+    if(raf)return;raf=requestAnimationFrame(function(){
+      spot.style.left=e.clientX+'px';spot.style.top=e.clientY+'px';
+      spot.style.opacity='1';raf=null;
+    });
+  });
+  document.addEventListener('mouseleave',function(){spot.style.opacity='0'});
+})();
+
+/* === Theme === */
+var themeBtn=document.getElementById('theme-btn');
+var saved=localStorage.getItem('theme')||'dark';
+html.setAttribute('data-theme',saved);updateThemeIcon();
+themeBtn.addEventListener('click',function(){
+  var n=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',n);localStorage.setItem('theme',n);updateThemeIcon();
+});
+function updateThemeIcon(){
+  var d=html.getAttribute('data-theme')==='dark';
+  document.getElementById('icon-sun').style.display=d?'none':'';
+  document.getElementById('icon-moon').style.display=d?'':'none';
+}
+
+/* === Contact Page (content unchanged from original) === */
+function showContact(){
+  contentEl.classList.remove('hidden');
+  Object.keys(PAGES).forEach(function(k){PAGES[k].el.classList.add('hidden')});
+  document.title='联系我们 — 作品集';
+
+  contentEl.innerHTML='<div class="contact-section">'+
+    '<h1 class="tutorial-title">联系我们</h1>'+
+    '<p style="color:var(--text-secondary);margin-bottom:2rem">产品咨询 · 技术支持</p>'+
+    '<div class="contact-grid" style="grid-template-columns:1fr;max-width:320px;margin:0 auto">'+
+      '<div class="contact-card">'+
+      '<div class="contact-name">刘洋旭</div>'+
+      '<div class="contact-detail">'+
+        '<div class="cd-item"><span class="cd-label">微信</span>ninesun10271208</div>'+
+        '<div class="cd-item"><span class="cd-label">电话</span><span class="cd-phone">19823925673</span></div>'+
+      '</div>'+
+    '</div>'+
+    '</div></div>';
+  // tap support for touch devices (content unchanged)
+  var card=contentEl.querySelector('.contact-card');
+  card.addEventListener('click',function(){card.classList.toggle('tapped')});
+}
+
+/* === On-demand Image Loading (mobile perf: fetch only what is shown) === */
+/* 统一资源 Base URL：接入 CDN 时只需改这一处 */
+var ASSET_BASE='';
+function attachLoad(img){
+  var done=function(){img.classList.add('loaded')};
+  if(img.complete){done()}else{img.addEventListener('load',done)}
+}
+function loadImg(img){
+  img.src=ASSET_BASE+img.getAttribute('data-src');
+  img.removeAttribute('data-src');
+  attachLoad(img);
+}
+function revealGroup(root,group){
+  root.querySelectorAll('img[data-src][data-reveal]').forEach(function(img){
+    if((img.getAttribute('data-reveal')||'').split(/\s+/).indexOf(group)!==-1)loadImg(img);
+  });
+}
+function revealAll(root){
+  root.querySelectorAll('img[data-src]').forEach(loadImg);
+}
+/* eager images (PCB3D整体) fade in on load */
+document.querySelectorAll('.pcb-card img[src]').forEach(attachLoad);
+/* PDF 延迟加载：点击时才解析资源地址 */
+document.querySelectorAll('a[data-href]').forEach(function(a){
+  a.href=ASSET_BASE+a.getAttribute('data-href');
+});
+
+/* === Nav Group Collapse === */
+document.querySelectorAll('.nav-group-title').forEach(function(t){
+  function toggle(){
+    var sec=t.closest('.nav-section');
+    var collapsed=sec.classList.toggle('collapsed');
+    t.setAttribute('aria-expanded',String(!collapsed));
+  }
+  t.addEventListener('click',toggle);
+  t.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}
+  });
+});
+function expandSection(sec){
+  sec.classList.remove('collapsed');
+  var title=sec.querySelector('.nav-group-title');
+  if(title)title.setAttribute('aria-expanded','true');
+}
+
+/* === Routing === */
+var PAGES={
+  overview:{el:document.getElementById('page-overview'),title:'全局浏览'},
+  routing:{el:document.getElementById('page-routing'),title:'关键布线'},
+  'door/overview':{el:document.getElementById('page-door-overview'),title:'项目概览'},
+  'door/layout':{el:document.getElementById('page-door-layout'),title:'全局浏览'},
+  'door/power':{el:document.getElementById('page-door-power'),title:'电源架构'},
+  'door/core':{el:document.getElementById('page-door-core'),title:'核心硬件设计'},
+  'door/usb':{el:document.getElementById('page-door-usb'),title:'USB / 接口设计'},
+  'door/docs':{el:document.getElementById('page-door-docs'),title:'工程资料'},
+  'rf/docs':{el:document.getElementById('page-rf-docs'),title:'工程资料'}
+};
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  var o=document.getElementById('overlay');
+  o.style.display='none';o.style.pointerEvents='none';
+}
+function markActive(name){
+  document.querySelectorAll('.nav-item').forEach(function(a){
+    a.classList.toggle('active',a.dataset.route===name);
+  });
+}
+function showPage(name){
+  contentEl.classList.add('hidden');
+  Object.keys(PAGES).forEach(function(k){PAGES[k].el.classList.add('hidden')});
+  PAGES[name].el.classList.remove('hidden');
+  document.title=PAGES[name].title+' — 作品集';
+  markActive(name);
+  /* desktop: preload whole page for instant hover; mobile: only the visible base image */
+  if(hoverCapable){revealAll(PAGES[name].el)}else{revealGroup(PAGES[name].el,'base')}
+}
+function route(){
+  var h=(location.hash||'').replace(/^#\//,'').split('?')[0];
+  if(!h)h='overview';
+  if(h==='contact'){showContact();markActive('contact')}
+  else if(PAGES[h]){showPage(h)}
+  else{location.replace('#/overview');return}
+  /* 确保当前页所在分组展开 */
+  var act=document.querySelector('.nav-item.active');
+  if(act){var sec=act.closest('.nav-section');if(sec)expandSection(sec)}
+  closeSidebar();
+  mainEl.scrollTop=0;
+}
+window.addEventListener('hashchange',route);
+if(!location.hash){history.replaceState(null,'','#/overview')}
+route();
+
+/* === Stage Engine: hover (desktop) / tap (touch) === */
+function initStage(stage,keys){
+  var cards={};
+  keys.forEach(function(k){cards[k]=stage.querySelector('[data-tr="'+k+'"]')});
+  function clear(){
+    stage.className=stage.className.replace(/\bs-[a-z0-9-]+\b/g,' ').trim();
+    keys.forEach(function(k){cards[k].setAttribute('aria-expanded','false')});
+  }
+  function set(name){
+    clear();
+    if(!name)return;
+    stage.classList.add(name);
+    keys.forEach(function(k){if(name==='s-'+k)cards[k].setAttribute('aria-expanded','true')});
+    /* mobile: fetch the images this state reveals */
+    if(!hoverCapable)revealGroup(stage,name);
+  }
+  if(hoverCapable){
+    /* hover-intent：离开后延迟收起，快速划过/滚动不会闪烁 */
+    var leaveTimer=null;
+    function cancelPending(){if(leaveTimer){clearTimeout(leaveTimer);leaveTimer=null}}
+    function scheduleClear(){
+      cancelPending();
+      leaveTimer=setTimeout(function(){leaveTimer=null;clear()},400);
+    }
+    keys.forEach(function(k){
+      cards[k].addEventListener('mouseenter',function(){cancelPending();set('s-'+k)});
+    });
+    stage.addEventListener('mouseleave',scheduleClear);
+    stage.addEventListener('mouseenter',cancelPending);
+  }
+  keys.forEach(function(k){
+    cards[k].addEventListener('click',function(){
+      if(hoverCapable)return; /* hover drives; click opens lightbox */
+      set(stage.classList.contains('s-'+k)?'':'s-'+k);
+    });
+    cards[k].addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){
+        e.preventDefault();
+        set(stage.classList.contains('s-'+k)?'':'s-'+k);
+      }
+    });
+  });
+}
+initStage(document.getElementById('ov-stage'),['3d','top','bottom']);
+initStage(document.getElementById('rt-stage'),['overall','mcu','bq','usb']);
+initStage(document.getElementById('dl-stage'),['main','pcbt','p3d','pcbb']);
+initStage(document.getElementById('pw-stage'),['main','bq','dcdc']);
+initStage(document.getElementById('co-stage'),['main']);
+initStage(document.getElementById('ub-stage'),['main']);
+
+/* === Lightbox (desktop) === */
+window.openLightbox=function(src){
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox').classList.add('open');
+};
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');
+});
+if(hoverCapable){
+  document.querySelectorAll('.pcb-card img').forEach(function(img){
+    img.addEventListener('click',function(){openLightbox(img.dataset.full||img.src)});
+  });
+}
+})();
+</script>
+</body>
+</html>

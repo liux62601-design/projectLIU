@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="页面未找到 — TechTutorial Pro">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
+
+  <title>404 — 页面未找到 | TechTutorial Pro</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <style>
+    .not-found {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .not-found-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .not-found-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+    }
+
+    .not-found-blob:nth-child(1) {
+      width: 500px; height: 500px;
+      background: #0a84ff;
+      top: -200px; right: -200px;
+      animation: blob-float 20s ease-in-out infinite;
+    }
+    .not-found-blob:nth-child(2) {
+      width: 400px; height: 400px;
+      background: #bf5af2;
+      bottom: -150px; left: -150px;
+      animation: blob-float 20s ease-in-out infinite;
+      animation-delay: -10s;
+    }
+
+    .not-found-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .not-found-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(6rem, 15vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .not-found h1 {
+      margin-bottom: 0.75rem;
+    }
+
+    .not-found p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    .not-found-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .not-found-links {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .not-found-links a {
+      font-size: 0.9rem;
+      color: var(--text-tertiary);
+      transition: color var(--transition-fast);
+    }
+
+    .not-found-links a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="not-found">
+    <div class="not-found-bg" aria-hidden="true">
+      <div class="not-found-blob"></div>
+      <div class="not-found-blob"></div>
+    </div>
+
+    <div class="not-found-content">
+      <div class="not-found-code">404</div>
+      <h1>页面未找到</h1>
+      <p>您访问的页面不存在或已被移动。<br>请检查 URL 是否正确，或使用以下链接导航。</p>
+
+      <div class="not-found-actions">
+        <a href="index.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          返回首页
+        </a>
+        <a href="tutorials/index.html" class="btn btn-glass btn-lg">
+          教程中心
+        </a>
+      </div>
+
+      <div class="not-found-links">
+        <a href="index.html">首页</a>
+        <a href="tutorials/index.html">教程</a>
+        <a href="downloads/index.html">下载</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">联系我们</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

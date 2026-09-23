@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liux62601-design.github.io/projectLIU/sitemap.xml
