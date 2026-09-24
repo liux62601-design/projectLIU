@@ -1207,15 +1207,24 @@ function initStage(stage,keys){
     if(!hoverCapable)revealGroup(stage,name);
   }
   if(hoverCapable){
-    /* hover-intent：离开后延迟收起，快速划过/滚动不会闪烁 */
-    var leaveTimer=null;
+    /* hover-intent：进入停留 180ms 才切换状态、离开延迟 400ms 才收起。
+       快速划过/路过相邻卡片不会切换，点击放大时布局稳定不换图 */
+    var leaveTimer=null,enterTimer=null;
     function cancelPending(){if(leaveTimer){clearTimeout(leaveTimer);leaveTimer=null}}
     function scheduleClear(){
       cancelPending();
       leaveTimer=setTimeout(function(){leaveTimer=null;clear()},400);
     }
     keys.forEach(function(k){
-      cards[k].addEventListener('mouseenter',function(){cancelPending();set('s-'+k)});
+      var card=cards[k];
+      card.addEventListener('mouseenter',function(){
+        cancelPending();
+        if(enterTimer){clearTimeout(enterTimer)}
+        enterTimer=setTimeout(function(){enterTimer=null;set('s-'+k)},180);
+      });
+      card.addEventListener('mouseleave',function(){
+        if(enterTimer){clearTimeout(enterTimer);enterTimer=null}
+      });
     });
     stage.addEventListener('mouseleave',scheduleClear);
     stage.addEventListener('mouseenter',cancelPending);
